@@ -1,0 +1,3608 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Experimentation Report</title>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<style type="text/css" media="screen">
+/*styles for exported experiment report*/
+html,body{background:#fff;font-family:Arial,Helvetica,sans-serif;margin:0px;padding:0px}
+h1,h2,h3,h4,h5,h6,p,div,ul,li{margin:0;padding:0}
+a{outline-style:none}
+img{border:0px}
+
+h1{font-size:150%;padding:10px;color:#fff;background:#69c;margin-bottom:5px;}
+h2{font-size:120%;padding:10px;background-color:#cccccc;margin-top:50px;}
+h3{font-size:110%;font-weight:normal}
+h4{font-size:100%}
+h5{font-size:90%}
+h6{font-size:80%}
+
+br{clear:both}
+p{margin:10px 0}
+table,p,li{font-size:80%}
+.bodylist{font-size:80%}
+.show{}
+.noshow{display:none}
+.vis{visibility:visible}
+.hid{visibility:hidden}
+#container{margin:0px auto;position:relative}
+#content{margin:10px 50px 5px 250px;}
+.indent{margin-left:91px}
+
+table{
+	border-width:1px;
+	border-spacing:0px;
+	border-style:solid;
+	border-color:black;
+	border-collapse:collapse;
+	background-color:white;
+}
+table th{
+	border-width:1px;
+	padding:4px;
+	border-style:dotted;
+	border-color:#cccccc;
+	background-color:white;
+}
+table td{
+	border-width:1px;
+	padding:4px;
+	border-style:dotted;
+	border-color:#cccccc;
+	background-color: white;
+}
+td.right{text-align:right;}
+td.center{text-align:center;}
+
+tr.alternateRow td, tr.alternateRow th{background:#eee}
+.rawdata{
+	float:left;
+	font-weight:bold;
+	margin:10px 0;
+	border-bottom:solid 2px white;
+	padding-bottom:1px;
+}
+.rawdata:hover{
+	border-bottom:solid 2px black;
+	cursor:pointer;
+}
+.expand,.collapse{
+	float:left;
+	margin-right:5px;
+	position:relative;
+	height:16px;
+	width:16px;
+	border:2px solid black;
+}
+.expand{background:#dfefff;}
+.collapse{background:#ffefdf;}
+
+.expand span,.collapse span{position:absolute;}
+.expand span{top:-1px;left:4px;}
+.collapse span{top:-3px;left:5px;}
+
+
+#info {height:500px;}
+
+#menu {position:fixed;left:15px;top:10px;width:220px;background:red;}
+#menu_title{margin:0; padding:0;width:220px;height:50px;background:#69c;border-bottom:3px solid #fff; font-size:100%; font-weight:bold; color: #fff;  line-height:50px;text-align:center}
+#menu_foot{margin:0; padding:0;width:220px;height:10px;background:#69c;border-top:3px solid #fff;}
+#menu dl {margin: 0;padding: 0;width:220px;   background: #69c;}
+#menu dt {margin:0; padding: 10px; font-size:100%; font-weight:bold; color: #fff; border-bottom:1px solid #fff; background:#69c;}
+#menu dd {margin:0; padding:0; color: #fff; font-size:90%; border-top:1px solid #fff; background: #47a;}
+#menu dd.top{border:0}
+#gallery{height:400px;overflow:auto;margin:0;}
+#gallery a, #gallery a:visited {
+	color:#fff;
+	text-decoration:none;
+	display:block;
+	padding:5px 5px 5px 20px;
+	background: #47a;
+	width:179px;
+}
+#gallery a:hover {background: #258; color:#9cf;}
+
+ol li {font-size:11px;}
+</style>
+<style type="text/css" media="screen"  data-style-file="flexsimweb/default.css">
+body { font-family:Arial; }
+body.inapp { margin:0 }
+body.bordered { border: 1px solid gray; }
+
+.fullscreen {
+	height:100%;
+	width:100%;
+	overflow-y:hidden;
+}
+
+.verticalscroll {
+	overflow-y:auto;
+	overflow-x:hidden
+}
+
+.horizontalscroll {
+	overflow-y:hidden;
+	overflow-x:auto
+}
+
+.dualscroll {
+	overflow-y:auto;
+	overflow-x:auto
+}
+
+.autoscroll {
+	overflow:auto;
+}
+
+.chartheader{
+	display:block
+}
+
+.title{
+	font-weight:bold;
+	font-size:1.05em;
+	padding-top:3px;
+	text-align:center;
+}
+
+.fshp {
+	border: 2px solid #f1ddaf;
+	display:block;
+	resize:vertical;
+	width:100%;
+	max-width:100%;
+	outline: 0 solid black;
+	font-size:85%;
+}
+
+#flexsimpopup{
+	position:fixed;
+	font-size:75%;
+	border-radius:4px;
+	border-top-right-radius:4px;
+	border-top-left-radius:4px;
+	border-bottom-left-radius:4px;
+	border-bottom-right-radius:4px;
+	border:solid gray 1px;
+	padding:0 3px 1px 3px;
+	background-color:#f8f8ff;
+	display:none;
+}
+
+#console{
+	display:none;
+}
+
+table {
+	border-collapse:collapse;
+}
+
+td,th {
+	padding-right:6px; 
+	padding-left:6px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+table.pfmdatatable td { text-align: center }
+table.pfmsummary td { text-align: center }
+.nopadding { padding: 0 0 0 0 }
+.rowhead { padding-left: 0; text-align: left; }
+.subrow { font-size: 0.8em; padding-top: 0; padding-bottom: 0; color: #808080; }
+.gray { color: #c0c0c0; }
+
+.dashboardModelInput {
+	position: absolute;
+	white-space: nowrap;
+}
+
+
+
+/****The following styles are used for the Web Server*****/
+/*MAIN:/project/exec/globals/serverinterface/pagetemplates/default*/
+
+#invisibleIFrame { display:none; }
+			
+.container {
+	max-width: 800px;
+}
+
+.consoleContainer {
+	margin-left: 5%;
+	max-width: 90%;
+}
+
+section {
+	padding-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.logo {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+body.webserverbody{
+	position: relative;
+}
+
+#controls {
+	position: relative;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.serverchart {
+	height:200px;
+}
+
+div.scroll {
+	overflow: auto;
+	margin-top: 200px;
+}
+
+.modelName {
+	color: #000;
+	font-weight: bold;
+	font-size: 24px;
+	text-align: left;
+	margin-left: 0px;
+	magin-top: 0px;
+}
+
+#backButton {
+	float: left;
+	width: 20px;
+	margin-top: 5px;
+}
+
+#navigation-links {
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+#serverlogo {
+	float: right;
+	margin-right: 0px;
+	width: 250px;
+}
+
+#servercontent {
+	margin: 4px 0px;
+	height: calc(100vh - 200px);
+	border-top: 1px solid gray;
+}
+
+a.focused-section, a.focused-section:hover {
+	text-decoration: none;
+	color:#000;
+	background: #fff;
+	cursor:default;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 6px;
+	margin-right: 3px;
+	margin-left: 3px;
+	border: 1px solid gray;
+	border-bottom: 2px solid white;
+}
+
+a.blurred-section {
+	color:#000;
+	background: #fff;
+	cursor:pointer;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 6px;
+	margin-right: 3px;
+	margin-left: 3px;
+	border: 1px solid #ccc;
+	border-bottom: 1px solid gray;
+}
+
+a.blurred-section:hover {
+	color:#fff;
+	background: #003366;
+	text-decoration: none;
+}
+
+button.model-control, button.web-button, .expResult, .optResult {
+	color:#000000;
+	background: transparent; 
+	cursor:pointer;
+	border: 0px;
+	margin-top: 2px;
+}
+
+button.model-control:hover, button.web-button:hover, .expResult:hover, .optResult:hover {
+	color: #fff;
+	background: #003366;
+}
+
+button.model-control:active, button.web-button:active, .expResult:active, .optResult:active {
+	color: #fff;
+	background: #bdbdbd;
+}
+
+button.model-control {
+	float: left;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin: 8px 0px;
+	width: auto;
+	min-width: 70px;
+}
+
+button.model-control:disabled, .expResult:disabled, .optResult:disabled {
+	background-color: #ddd;
+	color: #999;
+}
+
+button.web-button {
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+input#runtime {
+	width: 450px;
+	margin-left: 8px;
+	margin-top: -4px;
+}
+
+input#runspeedinput {
+	float: right;
+	width: 100px;
+	margin-left: 15px;
+	margin-top: -3px;
+}
+
+input#speedslider {
+	float: right;
+	width: 300px;
+	margin-left: 5px;
+	padding-top: 0px;
+}
+
+input[readonly] {
+	background-color: #f2f2f2;
+}
+
+/*The Following have been added to make IEs range slider not look like crap*/
+input[type=range]::-ms-track {
+    width: 300px;
+    height: 5px;
+    
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+
+input[type=range]::-ms-tooltip {
+	display: none;
+}
+
+.expVariables input[readonly] {
+	background-color: #e6e6e6;
+}
+
+#runSpeed, #simRunTime {
+	position: relative;
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding: 0px;
+	height: 30px;
+}
+
+#dockingLayout {
+	float:left;
+	margin-top: 0px;
+	height: calc(100vh - 200px);
+}
+
+.fullscreen3DView {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 100000;
+}
+
+.screenshot {
+	width: 100%; /*The screenshot is already sized to fit, but just in case it's not quite right we force it to 100% (to avoid scroll bars)*/
+	height: 100%; /*And it makes for smooth resizing of floating windows*/
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.screenshot<div {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.invalidView {
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.graphPanel {
+	position: relative; /*So the dragresize won't let the widgets move over the docking panel title/tab*/
+}
+
+.menuButton {
+	position: absolute;
+	margin-left: 5px;
+	margin-top: 5px;
+	opacity: 0.4;
+	width: 20px;
+}
+
+.parameters {
+	margin: 10px 20px;
+	width: 350px;
+	float: left;
+}
+
+.parameter {
+	display: block;
+	margin: 10px 0px;
+}
+
+.parameter>input {
+	float: right;
+	margin-top: -1px;
+	border: 1px solid gray;
+	padding: 2px;
+}
+
+.expVariables {
+	clear: both;
+	overflow: auto;
+	margin: 20px;
+}
+
+.expVariables input {
+	width: 100px;
+	margin: 3px;
+	border: 1px solid gray;
+	padding: 2px;
+}
+
+.expControl {
+	float: left;
+	margin: 10px 20px;
+	margin-top: 18px;
+	display: block;
+}
+
+#runExperiment, #optimize {
+	width: 350px;
+	height: 50px;
+	border: 2px solid gray;
+	display: block;
+	float: none;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.expResult, .optResult {
+	border: 2px solid gray;
+	display: block;
+	position: relative;
+	float: none;
+	width: 240px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: -120px;
+	left: 50%;
+}
+
+.consoleButton {
+	float: left;
+	margin-right: 20px;
+}
+
+#consoleOutput {
+	clear: both;
+	position: relative;
+	top: 20px;
+}
+
+#section-optimizer {
+	height: calc(85vh - 300px);
+}
+
+.optimizer {
+	min-height: 300px;
+	width: calc(100% - 205px);
+}
+
+#optGraphSettings {
+	width: 185px;
+	margin-top: 30px;
+	margin-left: 20px;
+	float: left;
+}
+
+.graphSettingSelect {
+	width: 175px;
+	height: 26px;
+	overflow: hidden;
+	background: url(jquery/jQWidgets/images/icon-down.png) no-repeat right #fff;
+	border: 1px solid #999;
+}
+
+.graphSettingSelect select {
+	background: transparent;
+	width: 268px;
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	height: 26px;
+	-webkit-appearance: none;
+}
+
+.optimizerStatus {
+	float: left;
+	width: calc(100% - 225px);
+	height: 100%;
+}
+
+.RowHeader {
+	background: #e8e8e8;
+}
+
+.dashboardImage {
+	max-width: 100%;
+	height: auto;
+}
+
+.spinnerUp {
+	background: url(jquery/jQWidgets/images/icon-up.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.spinnerDown {
+	background: url(jquery/jQWidgets/images/icon-down.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+</style>
+<style type="text/css" media="screen"  data-style-file="flexsimweb/pfm.css">
+.chartSelector {
+	padding: 10px 0px 10px 0px;
+	border-bottom: 1px solid gray;
+}
+.chartSelectorHeader {
+	display: inline-block;
+	width: 200px;
+}
+.titleEdit
+{
+	font-weight: bold;
+	font-size: 130%;
+	margin: 10px 0px 10px 0px;
+	width:600px;
+}
+.chartCloseButton
+{
+	position:absolute;
+	top: 2px;
+	right: 2px;
+    cursor:pointer;
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 7px 3px;
+}
+.chartCloseButton:before
+{
+	content:"x"
+}
+.pfmChart
+{
+	width: 100%;
+	height: 100%;
+}
+.drsElement
+{
+	position: absolute;
+}
+#chartCanvas
+{
+	position: relative;
+}
+#dialogoverlay{
+	display:none;
+	background-color:gray;
+	position:fixed;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+	opacity:0.7;
+	z-index:100;
+}
+#dialogcontainer{
+	border-radius:6px;
+	border-top-right-radius:6px;
+	border-top-left-radius:6px;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius:6px;
+	background-color:white;
+	position:fixed;
+	top:20px;
+	left:50%;
+	display:none;
+	border: 1px solid;
+	margin-left: auto;
+	z-index:101;
+}
+#dialogdiv{
+	z-index:102;
+}
+
+
+</style>
+<style type="text/css" media="screen"  data-style-file="flexsimweb/dragresize/dragresize.css">
+/* Required CSS classes: must be included in all pages using this script */
+
+/* Apply the element you want to drag/resize */
+.drsElement {
+ position: absolute;
+ border: 1px solid #333;
+ background: white;
+}
+
+/*
+ The main mouse handle that moves the whole element.
+ You can apply to the same tag as drsElement if you want.
+*/
+.drsMoveHandle {
+ height: 20px;
+ border-bottom: 1px solid #666;
+ cursor: default;
+}
+
+/*
+ The DragResize object name is automatically applied to all generated
+ corner resize handles, as well as one of the individual classes below.
+*/
+.dragresize {
+ position: absolute;
+ width: 5px;
+ height: 5px;
+ font-size: 1px;
+ border: 1px solid #333;
+}
+
+/*
+ Individual corner classes - required for resize support.
+ These are based on the object name plus the handle ID.
+*/
+.dragresize-tl {
+ top: -8px;
+ left: -8px;
+ cursor: nw-resize;
+}
+.dragresize-tm {
+ top: -8px;
+ left: 50%;
+ margin-left: -4px;
+ cursor: n-resize;
+}
+.dragresize-tr {
+ top: -8px;
+ right: -8px;
+ cursor: ne-resize;
+}
+
+.dragresize-ml {
+ top: 50%;
+ margin-top: -4px;
+ left: -8px;
+ cursor: w-resize;
+}
+.dragresize-mr {
+ top: 50%;
+ margin-top: -4px;
+ right: -8px;
+ cursor: e-resize;
+}
+
+.dragresize-bl {
+ bottom: -8px;
+ left: -8px;
+ cursor: sw-resize;
+}
+.dragresize-bm {
+ bottom: -8px;
+ left: 50%;
+ margin-left: -4px;
+ cursor: s-resize;
+}
+.dragresize-br {
+ bottom: -8px;
+ right: -8px;
+ cursor: se-resize;
+}
+
+</style>
+<script type="text/javascript" data-script-file="flexsimweb/common.js">
+
+function convertBufferToString(dataView, offset){
+	var array = [];
+	var c = dataView.getUint8(offset);
+	for(var i = offset+1; c; i++)
+	{
+		array.push(String.fromCharCode(c));
+		c = dataView.getUint8(i);
+	}
+	return array.join("");
+}
+
+function numToString(val, precision){
+	var multiplier = Math.pow(10, precision);
+	return Math.round(val * multiplier) / multiplier;
+}
+
+function viewport()
+{
+	var e = window, a = 'inner';
+	if ( !( 'innerWidth' in window ) )
+	{
+		a = 'client';
+		e = document.documentElement || document.body;
+	}
+	return { width : e[ a+'Width' ] , height : e[ a+'Height' ] }
+}
+
+function getMousePos(canvas, evt){
+	// get canvas position
+	var obj = canvas;
+	var top = 0;
+	var left = 0;
+	while (obj && obj.tagName != 'BODY') {
+		top += obj.offsetTop;
+		left += obj.offsetLeft;
+		obj = obj.offsetParent;
+	}
+	// return relative mouse position
+	var mouseX = evt.clientX - left + window.pageXOffset;
+	var mouseY = evt.clientY - top + window.pageYOffset;
+	//var scrollOffset = windowScrollPos();
+	return {
+		x: mouseX,// - scrollOffset.left,
+		y: mouseY// - scrollOffset.top
+	};
+}
+
+function setMouseOffsets(e) {
+	if(e.offsetX == undefined) {
+		var pos = getMousePos(e.target, e);
+		e.offsetX = pos.x;
+		e.offsetY = pos.y;
+	}
+}
+
+function pixelRound(value)
+{
+	return Math.floor(value)+0.5;
+}
+
+function windowScrollPos() {
+	return {
+		left:f_filterResults (
+				window.pageXOffset ? window.pageXOffset : 0,
+				document.documentElement ? document.documentElement.scrollLeft : 0,
+				document.body ? document.body.scrollLeft : 0
+		),
+		top:f_filterResults (
+			window.pageYOffset ? window.pageYOffset : 0,
+			document.documentElement ? document.documentElement.scrollTop : 0,
+			document.body ? document.body.scrollTop : 0
+		)
+	};
+}
+function f_scrollTop() {
+	return ;
+}
+function f_filterResults(n_win, n_docel, n_body) {
+	var n_result = n_win ? n_win : 0;
+	if (n_docel && (!n_result || (n_result > n_docel)))
+		n_result = n_docel;
+	return n_body && (!n_result || (n_result > n_body)) ? n_body : n_result;
+}
+
+
+var FIELD_TYPE_DOUBLE = 1;
+var FIELD_TYPE_INT = 2;
+var FIELD_TYPE_STR = 3;
+var FIELD_TYPE_FLOAT = 4;
+
+var BUNDLE_FIELD_SIZE = 70;
+
+var UTILIZATION_SHOW_ALL = 0;
+var UTILIZATION_TRANSLUCENT = 1;
+var UTILIZATION_HIDE = 2;
+
+var PICK_MODE_HOVER = 1;
+var PICK_MODE_CLICK = 2;
+
+var STATE_NON_UTILIZED = 0;
+var STATE_UTILIZED = 1;
+var STATE_EXCLUDED = 2;
+
+function saveStringToBuffer(str, dataView, offset){
+	for(var i = 0; i < str.length; i++)
+		dataView.setUint8(i + offset, str.charCodeAt(i));
+}
+
+var console = null;
+function clearconsole(){
+	if(console)
+	{
+		console.innerHTML = "";
+		if(console.style)
+			console.style.display = "none";
+	}
+}
+function print(msg){
+	if(window.validFireFlexsimEvent)
+		fireFlexsimEvent("print", msg);
+	else if(console)
+	{
+		if(console.style)
+			console.style.display = "block";
+		if(console.innerText)
+			console.innerText += msg;
+		else console.innerHTML += msg;
+	}
+}
+function println(msg){
+	print(msg);
+	print('<br/>');
+}
+function getStackTrace(e) {
+	try{
+		var callstack = [];
+		var isCallstackPopulated = false;
+
+		var currentFunction = arguments.callee.caller.caller;
+		while (currentFunction) {
+			var fn = currentFunction.toString();
+			var fname = fn.substring(0, fn.indexOf(')') + 1) || 'anonymous';
+			callstack.push(fname);
+			callstack.push("\r\n");
+			currentFunction = currentFunction.caller;
+		}
+		return callstack.join('');
+	}
+	catch(e){return "unable to trace stack";}
+}
+		
+function printError(e, fileName){
+	var errorStr = "Error: " + e.name + " " + e.message;
+	if(e.lineNumber)
+		errorStr += " at line " + e.lineNumber;
+	if (fileName)
+		errorStr += " in " + fileName;
+	errorStr += "\r\nCallstack: \r\n" + getStackTrace(e);
+	if(window.validFireFlexsimEvent)
+		fireFlexsimEvent("print", errorStr, 1);
+	else print(errorStr);
+}
+
+function printObject(o){
+	for(var prop in o)
+		print(" " + prop + ":" + o[prop] + " ");
+}
+
+function getRGBColor(array, index, alpha, linearGradient, lightness) {
+    if (index >= array.length) {
+        if (lightness == undefined)
+            return getIndexedColor(index, [40, 80], [50, 80], alpha, linearGradient);
+        return getIndexedColor(index, [30, 70], [80, 90], alpha, linearGradient);
+    }
+   
+    var r = array[index][0];
+    var g = array[index][1];
+    var b = array[index][2];
+
+    if (lightness != undefined) {
+        r = Math.round(Math.min(255, r + (lightness * (255 - r))));
+        g = Math.round(Math.min(255, g + (lightness * (255 - g))));
+        b = Math.round(Math.min(255, b + (lightness * (255 - b))));
+    }
+
+    if(!linearGradient)
+        return ["rgba(", r, ", ", g, ",", b, ",", alpha || 1, ")"].join("");
+
+	linearGradient.addColorStop(0, ["rgba(", Math.floor(r *0.85), ",", Math.floor(g *0.85), ",", Math.floor(b *0.85), ",", alpha || 1, ")"].join(""));
+	linearGradient.addColorStop(0.4, ["rgba(", r, ",", g, ",", b, ",", alpha || 1, ")"].join(""));
+	linearGradient.addColorStop(1, ["rgba(", Math.floor(r *0.65), ",", Math.floor(g *0.65), ",", Math.floor(b *0.65), ",", alpha || 1, ")"].join(""));
+	return linearGradient;
+}
+
+var hues = [20,0,120,240,60,180,300,30,210,150,270,330,15,195,285,45,135,225,315,75,165,105,255,345,90];
+function getIndexedColor(index, saturation, lightness, alpha, linearGradient){
+	if(saturation && saturation.length)
+	{
+		var percent = ((index*863)%100)/100.0;
+		var temp = saturation[0] + percent*(saturation[1]-saturation[0]);
+		saturation = temp;
+	}
+	if(lightness && lightness.length)
+	{
+		var percent = ((index*1733)%100)/100.0;
+		var temp = lightness[0] + percent*(lightness[1]-lightness[0]);
+		lightness = temp;
+	}
+	var hue;
+	if (index < hues.length)
+		hue = hues[index];
+	else hue = (index*8479)%360;
+	if(!linearGradient)
+		return ["hsla(", hue, ", ", Math.floor(saturation), "%,", Math.floor(lightness), "%,", alpha || 1, ")"].join("");
+	else{
+		linearGradient.addColorStop(0, ["hsla(", hue, ",", Math.max(0, Math.floor(saturation - 15)), "%,", Math.max(0, Math.floor(lightness - 7/(alpha || 1))), "%,", alpha || 1, ")"].join(""));
+		linearGradient.addColorStop(0.4, ["hsla(", hue, ",", Math.floor(saturation), "%,", Math.floor(lightness), "%,", alpha || 1, ")"].join(""));
+		linearGradient.addColorStop(1, ["hsla(", hue, ",", Math.max(0, Math.floor(saturation - 30)), "%,", Math.max(0, Math.floor(lightness - 15/(alpha || 1))), "%,", alpha || 1, ")"].join(""));
+		return linearGradient;
+	}
+}
+
+function calculateGridTickInterval(minDistBetweenTicks, graphSize, valRange) {
+	// figure out the interval between ticks on the y-axis
+    var tickInterval = 1.0;
+    var precision = 0;
+	if(graphSize > 0) {
+		var scaleArray = [2,2.5,2];
+		var scaleIndex = 0;
+		while (graphSize / (valRange / tickInterval) < minDistBetweenTicks) {
+			tickInterval *= scaleArray[scaleIndex++];
+			if (scaleIndex >= scaleArray.length)
+			    scaleIndex = 0;
+		}
+
+		while (graphSize / (valRange / tickInterval) > minDistBetweenTicks * 2.5) {
+			tickInterval/=scaleArray[scaleIndex++];
+			if (scaleIndex >= scaleArray.length)
+			    scaleIndex = 0;
+			else if (scaleIndex == 1)
+			    precision++;
+		}
+	}
+	return { 'tickInterval': tickInterval, 'precision': precision, 'tickWidth': graphSize / (valRange / tickInterval) };
+}
+
+// YGrid class calculates and draws an automatic grid along the y-axis
+function YGrid(ctx, yMin, yMax, graphTop, graphHeight, minDistBetweenTicks, autoAdjustMax) {
+	this.graphTop = graphTop;
+	this.adjustedMax = yMax;
+	var range = yMax - yMin;
+	if(range <= 0 || graphHeight <= 3) {
+		this.width = 1;
+		this.draw = function(){};
+		return this;
+	}
+    var tickAtts = calculateGridTickInterval(minDistBetweenTicks, graphHeight, range);
+    var tickInterval = tickAtts.tickInterval;
+	var precision = tickAtts.precision;
+
+	var nrTicks = Math.ceil(range / tickInterval);
+	if(autoAdjustMax) {
+		this.adjustedMax = yMin + nrTicks * tickInterval;
+		yMax = this.adjustedMax;
+		range = yMax - yMin;
+	}
+	var firstTickVal = Math.ceil(yMin / tickInterval) * tickInterval;
+	if(firstTickVal < yMin) firstTickVal += tickInterval;
+	var lastTickVal = firstTickVal + nrTicks * tickInterval;
+	var maxTickValWidth = Math.max(ctx.measureText(firstTickVal.toFixed(precision)).width, ctx.measureText(lastTickVal.toFixed(precision)).width);
+	this.width = maxTickValWidth + 5;
+	this.draw = function yGridDraw(x, sx) {
+		try{
+		var graphBottom = this.graphTop + graphHeight;
+		for(var val = firstTickVal; val <= yMax; val += tickInterval) {
+			var y = Math.floor(graphBottom - graphHeight * (val - yMin)/range) + 0.5;
+			ctx.strokeRect(x, y, sx, 0.1);
+			var valStr = val.toFixed(precision);
+			var width = ctx.measureText(valStr).width
+			if(y - 7 < graphBottom && y >= graphTop)
+			    ctx.fillText(valStr, Math.max(2, x - width - 5), y + 5);
+		}
+		}catch(e){printError(e);}
+	}
+	return this;
+}
+
+// XGrid class calculates and draws an automatic grid along the x-axis
+function XGrid(ctx, min, max, graphLeft, graphWidth, autoAdjustMax, fontSize, bottomCtx) {
+    // make a public graphLeft member, so the owner can do repeated draws on different locations
+    //bottomCtx allows us to draw the numbers on a separate canvas giving us scrolling abilites
+    if (bottomCtx == undefined || bottomCtx == ctx) {
+        bottomCtx = ctx;
+        this.adjustY = false;
+    } else {
+        this.adjustY = true;
+    }
+    this.bottomCtx = bottomCtx;
+	this.graphLeft = graphLeft;
+	this.ctx = ctx;
+	var range = max - min;
+	this.height = (fontSize || 11) +2;
+	this.adjustedMax = max;
+	if(range <= 0 || graphWidth <= 3) {
+		this.draw = function(){};
+		return this;
+	}
+	var onePrecisionWidth = ctx.measureText("0").width;
+	var middleVal = (max + min) / 1.57;
+	var maxTickValWidth = Math.max(
+			ctx.measureText(min.toFixed(0)).width,
+			ctx.measureText(middleVal.toFixed(0)).width,
+			ctx.measureText(max.toFixed(0)).width);
+	var tickAtts = calculateGridTickInterval(maxTickValWidth + 2 * onePrecisionWidth + 15, graphWidth, range);
+    var tickInterval = tickAtts.tickInterval;
+    var precision = tickAtts.precision;
+	if (tickAtts.tickWidth < maxTickValWidth + precision * onePrecisionWidth + 15) { 
+		// if the resolved tick width is less than the space needed to draw 
+		// the text based on the resolved precision, then I need to recalculate
+		tickAtts = calculateGridTickInterval(maxTickValWidth + precision * onePrecisionWidth + 15, graphWidth, range);
+		tickInterval = tickAtts.tickInterval;
+	}
+
+	if(autoAdjustMax) {
+		var nrTicks = Math.ceil(range / tickInterval);
+		this.adjustedMax = min + nrTicks * tickInterval;
+		max = this.adjustedMax;
+		range = max - min;
+	}
+
+	var nrTicks = Math.ceil(range / tickInterval);
+	var firstTickVal = Math.ceil(min / tickInterval) * tickInterval;
+	if(firstTickVal < min) firstTickVal += tickInterval;
+	this.draw = function xGridDraw(y, sy, doText, leftTextFudge, rightTextFudge) {
+		try{
+		if(doText == undefined) doText = true;
+		var graphRight = this.graphLeft + graphWidth;
+		if(leftTextFudge == undefined) leftTextFudge = 0;
+		if(rightTextFudge == undefined) rightTextFudge = 0;
+		for(var val = firstTickVal; val <= max; val += tickInterval) {
+			var x = Math.floor(this.graphLeft + graphWidth * (val - min)/range) + 0.5;
+			this.ctx.strokeRect(x, y, 0.1, sy);
+            //Draw the text
+			var valStr = val.toFixed(precision);
+			var width = this.bottomCtx.measureText(valStr).width;
+			var halfWidth = 0.5*width;
+			if(doText && x - halfWidth > this.graphLeft - leftTextFudge && x + halfWidth < graphRight + rightTextFudge)
+			    this.bottomCtx.fillText(valStr, x - halfWidth, this.adjustY ? fontSize *1.3 : (y + (sy < 0 ? this.height : -3)));
+		}
+		}catch(e){printError(e);}
+	};
+	return this;
+}
+
+function DateBasedGrid(ctx, timeMin, timeMax, min, max, graphLeft, graphWidth, height, fontSize, bottomCtx) {
+    this.bottomCtx = bottomCtx;
+    this.graphLeft = graphLeft;
+    this.ctx = ctx;
+    var fullTimeRange = timeMax - timeMin;
+    var timeRange = max - min;
+    this.height = height;
+
+    var graphRight = this.graphLeft + graphWidth;
+
+    var pixelPerTime = graphWidth / timeRange;
+    var timePerDay = fullTimeRange / 7; //Time is NOT in seconds, it's based upon the model units
+    var pixelsPerDay = pixelPerTime * timePerDay;
+    var timePerPixel = timePerDay / pixelsPerDay;
+    
+    var oneCharHeight = fontSize * 1.5;
+    var numberOfTimes = Math.min(24, Math.floor(pixelsPerDay / oneCharHeight) - 1);
+    var interval = Math.floor(numberOfTimes <= 1 ? 23 : 24 / numberOfTimes);
+    if (interval % 2 != 0 && !(interval == 1 && numberOfTimes == 24)) {
+        interval += 1;
+        numberOfTimes = 24 / interval;
+    }
+    var times = ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+                 "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
+    
+    this.draw = function xGridDraw(y, sy) {
+        try {
+            //Draw the days of the week
+            for (var i = 0; i < 7; i++) {
+                var x = this.graphLeft - (min * pixelPerTime) + pixelsPerDay * (i + 0.5) + (timeMin * pixelPerTime);
+
+                var dayStr;
+                switch (i) {
+                    case 0: dayStr = "Sun"; break;
+                    case 1: dayStr = "Mon"; break;
+                    case 2: dayStr = "Tue"; break;
+                    case 3: dayStr = "Wed"; break;
+                    case 4: dayStr = "Thu"; break;
+                    case 5: dayStr = "Fri"; break;
+                    case 6: dayStr = "Sat"; break;
+                }
+
+                var textWidth = bottomCtx.measureText(dayStr).width;
+
+                if (x - textWidth * 0.5 >= this.graphLeft && x + textWidth * 0.5 <= graphRight)
+                    this.bottomCtx.fillText(dayStr, x - textWidth * 0.5, this.height);
+
+                //x is the beginning of the day
+                x = Math.floor(this.graphLeft - (min * pixelPerTime) + pixelsPerDay * i + (timeMin * pixelPerTime)) + 0.5;
+
+                //Draw separator line between days
+                if (x > this.graphLeft) {
+                    this.ctx.strokeRect(x, y, 1, sy);
+                    this.bottomCtx.save();
+                    this.bottomCtx.strokeStyle = "#aaaaaa";
+                    this.bottomCtx.strokeRect(x, 0, 0.1, this.height);
+                    this.bottomCtx.restore();
+                }
+
+                //For each day draw the hours
+                var index = 1;
+                while (index <= 24) {
+                    var timeX = x + ((index - 1) / 24) * timePerDay / timePerPixel;
+                    
+                    if (timeX >= this.graphLeft) {
+                        this.bottomCtx.strokeRect(Math.floor(timeX) + 0.5, 0, 0.2, 3);
+                        timeX += fontSize * .5;
+                        this.bottomCtx.save();
+                        this.bottomCtx.font = fontSize * .75 + "pt Tahoma";
+                        this.bottomCtx.translate(timeX, 0);
+                        this.bottomCtx.rotate(Math.PI / 4);
+                        this.bottomCtx.translate(-timeX, 0);
+                        this.bottomCtx.fillText(times[index - 1], timeX, 8);
+                        this.bottomCtx.restore();
+                    }
+                    index += interval;
+                }
+            }            
+        } catch (e) { printError(e); }
+    };
+    return this;
+}
+
+
+
+
+var CHART_TYPE_HORIZONTAL_BAR = 1;
+var CHART_TYPE_VERTICAL_BAR = 2;
+var CHART_TYPE_PIE = 3;
+var CHART_TYPE_LINE = 4;
+var CHART_TYPE_DATA_TABLE = 5;
+var CHART_TYPE_TIME_PLOT = 6;
+var CHART_TYPE_TIME_SERIES_HISTOGRAM = 7;
+var CHART_TYPE_FINANCIAL = 8;
+var CHART_TYPE_GANTT = 9;
+var CHART_TYPE_GENERIC = 10;
+
+var GENERIC_TIMEPLOT = 1;
+var GENERIC_HISTOGRAM = 2;
+var GENERIC_GANTT = 3;
+var GENERIC_PIE = 4;
+var GENERIC_BAR = 5;
+var GENERIC_TABLE = 6;
+var GENERIC_BOXPLOT = 7;
+var GENERIC_SANKEY = 8;
+
+function initializeChart(div, properties, redraw, callback) {
+	try {
+	
+	//All charts have a title and need a chart type
+	if (properties.title == undefined)
+		properties.title = div.getAttribute('data-title') || 'Chart';
+	if (properties.chartType == undefined)
+		properties.chartType = div.getAttribute('data-chart-type') || CHART_TYPE_DATA_TABLE;
+	
+	if (typeof(properties.chartType) === 'string'
+			&& !isNaN(parseInt(properties.chartType)))
+		properties.chartType = parseInt(properties.chartType);
+
+	switch (properties.chartType) {
+		case "barchart":
+		case CHART_TYPE_HORIZONTAL_BAR:
+			initializeBarChart(div);
+			break;
+			
+		case "linechart":
+		case CHART_TYPE_LINE:
+			initializeLineChart(div);
+			break;
+			
+		case "datatable":
+		case CHART_TYPE_DATA_TABLE:
+			initializeDataTable(div);
+			break;
+			
+		case "piechart":
+		case CHART_TYPE_PIE:
+			initializePieChart(div);
+			break;
+			
+		case "timeplot":
+		case CHART_TYPE_TIME_PLOT:
+			initializeTimePlot(div);
+			break;
+
+		case "timeserieshistogram":
+		case CHART_TYPE_TIME_SERIES_HISTOGRAM:
+			initializeTimeSeriesHistogram(div);
+			break;
+			
+	    case "financial":
+	    case CHART_TYPE_FINANCIAL:
+	        initializeFinancial(div);
+	        break;
+			
+		case "gantt":
+	    case CHART_TYPE_GANTT:
+	        initializeGanttChart(div);
+	        break;
+
+		case CHART_TYPE_GENERIC: {
+			if (properties.genericChartType == undefined)
+				properties.genericChartType = +div.getAttribute('data-generic-chart-type');
+	
+			switch (properties.genericChartType) {
+			case GENERIC_TIMEPLOT:
+				initializeTimeplotd3(div);
+				break;
+			case GENERIC_HISTOGRAM:
+				initializeHistogramD3(div);
+				break;
+			case GENERIC_GANTT:
+				initializeGanttD3(div);
+				break;
+			case GENERIC_PIE:
+				initializePieD3(div);
+				break;
+			case GENERIC_BAR:
+				initializeBarD3(div);
+				break;
+			case GENERIC_TABLE:
+				initializeTableD3(div);
+				break;
+			case GENERIC_BOXPLOT:
+				initializeBoxPlot(div);
+				break;
+			case GENERIC_SANKEY:
+				initializeSankeyD3(div);
+				break;
+			}
+			
+			break;
+		}
+	}
+	div.setProperties(properties, redraw);
+	
+	fireFlexsimEvent("loaded");
+	if(callback)
+		callback();
+		
+	}catch(e) {
+		printError(e);
+	}
+}
+
+function findDocumentPos(obj){
+	var curleft = curtop = 0;
+	if (obj.offsetParent) {
+		do {
+			curleft += obj.offsetLeft;
+			curtop += obj.offsetTop;
+		}
+		while (obj = obj.offsetParent);
+		return [curleft, curtop];
+	}
+	return [0,0];
+};
+
+function Bundle (header){
+	try{
+		this.nrEntries = 0;
+
+		if(header.buffer != null){
+			var fieldHeader = new DataView(header.buffer, 0);
+			this.entryByteSize = fieldHeader.getInt32(4, 1);
+			this.nrFields = fieldHeader.getInt32(8, 1);
+			var startOffset = 5*4;
+
+			var fieldData = new DataView(header.buffer, startOffset);
+			this.fields = [];
+			for(var i = 0; i < this.nrFields; i++){
+				this.fields.push({
+					offset:fieldData.getUint16(i*BUNDLE_FIELD_SIZE + 64 + 0*2, 1),
+					byteSize:fieldData.getUint16(i*BUNDLE_FIELD_SIZE + 64 + 1*2, 1),
+					type:fieldData.getUint16(i*BUNDLE_FIELD_SIZE + 64 + 2*2, 1),
+					name:convertBufferToString(fieldData, i*BUNDLE_FIELD_SIZE)
+				});
+			}
+
+			this.updateData = this.updateDataBinary;
+			this.getValue = this.getValueBinary;
+		}
+		else {
+			this.header = header;
+			this.nrFields = header.fields != undefined ? header.fields.length : 0;
+			this.fields = header.fields;
+			this.updateData = this.updateDataJSO;
+			this.getValue = this.getValueJSO;
+		}
+
+		this.saveToCSV = function saveToCSV(filePath) {
+			var csv = [];
+			var fromEntry = 0;
+			var toEntry = this.nrEntries;
+			var fromField = 0;
+			var toField = this.nrFields;
+			var curRow = [];
+			for(var i = fromField; i < toField; i++)
+				curRow.push(this.fields[i].name);
+			csv.push(curRow.join(","));
+			for(var j = fromEntry; j < toEntry; j++) {
+				curRow = [];
+				for(var i = fromField; i < toField; i++)
+					curRow.push(this.getValue(j, i));
+				csv.push(curRow.join(","));
+			}
+			var csvStr = csv.join("\r\n");
+			if(window.validFireFlexsimEvent)
+				fireFlexsimEvent("savecsv", csvStr, filePath);
+			return csvStr;
+		}
+
+		return this;
+	}catch(e){printError(e);}
+}
+
+Bundle.interpretHeader = function interpretHeader(header){
+	if(header.getValue != null)
+		return header;
+	else if(header.header) {
+		var bundle = new Bundle(header.header);
+		if(header.data)
+			bundle.updateData(header.data);
+		return bundle;
+	}
+	else return new Bundle(header);
+}
+
+Bundle.interpretData = function interpretData(data, original){
+	if(data.getValue != null)
+		return data;
+	else
+	{
+		if(!original) return 0;
+		if(data.data) data = data.data;
+		original.updateData(data);
+		return original;
+	}
+}
+
+Bundle.prototype.updateDataBinary = function updateDataBinary(data){
+	this.nrEntries = Math.floor(data.byteLength / this.entryByteSize);
+	this.data = new DataView(data.buffer);
+}
+Bundle.prototype.getValueBinary = function getValueBinary(entryNr, fieldNr){
+	if(!this.data || entryNr >= this.nrEntries) return 0;
+	var entryOffset = entryNr * this.entryByteSize;
+	entryOffset += this.fields[fieldNr].offset;
+
+	switch(this.fields[fieldNr].type)
+	{
+		case FIELD_TYPE_DOUBLE: return this.data.getFloat64(entryOffset, 1);
+		case FIELD_TYPE_FLOAT: return this.data.getFloat32(entryOffset, 1);
+		case FIELD_TYPE_INT: return this.data.getInt32(entryOffset, 1);
+		case FIELD_TYPE_STR: return convertBufferToString(this.data, entryOffset);
+	}
+	return 0;
+}
+Bundle.prototype.getFieldName = function getFieldName(fieldNr){
+	if(fieldNr >= this.nrFields) return 0;
+	return this.fields[fieldNr].name;
+}
+
+Bundle.prototype.updateDataJSO = function updateDataJSO(data){
+	this.data = data;
+	this.nrEntries = data.length;
+}
+Bundle.prototype.getValueJSO = function getValueJSO(entryNr, fieldNr){
+	if(!this.data || entryNr >= this.nrEntries || fieldNr >= this.nrFields) return 0;
+	return this.data[entryNr][fieldNr];
+}
+
+Bundle.prototype.convertBinaryToJSO = function convertBinaryToJSO(){
+	if(this.getValue == this.getValueJSO)
+		return 0;
+	var newData = [];
+	for(var i = 0; i < this.nrEntries; i++){
+		var newEntry = [];
+		for(var j = 0; j < this.nrFields; j++){
+			newEntry.push(this.getValue(i, j));
+		}
+		newData.push(newEntry);
+	}
+	this.data = newData;
+	this.updateData = this.updateDataJSO;
+	this.getValue = this.getValueJSO;
+}
+
+Bundle.prototype.appendData = function appendData(data){
+	if(this.getValue != this.getValueJSO)
+		this.convertBinaryToJSO();
+	if(data.buffer){
+		var dataView = new DataView(data.buffer);
+		if(!this.entryByteSize)
+			return 0;
+		var entryOffset = entryNr * this.entryByteSize;
+		entryOffset += this.fields[fieldNr].offset;
+		var nrEntries =  Math.floor(dataView.byteLength / this.entryByteSize);
+		for(var i = 0; i < nrEntries; i++){
+			var newEntry = [];
+			for(var j = 0; j < this.fields.length; j++){
+				var entryOffset = (i * this.entryByteSize) + this.fields[j].offset;
+				switch(this.fields[j].type)
+				{
+					case FIELD_TYPE_DOUBLE: newEntry.push(dataView.getFloat64(entryOffset, 1)); break;
+					case FIELD_TYPE_FLOAT: newEntry.push(dataView.getFloat32(entryOffset, 1)); break;
+					case FIELD_TYPE_INT: newEntry.push(dataView.getInt32(entryOffset, 1)); break;
+					case FIELD_TYPE_STR: newEntry.push(convertBufferToString(dataView, entryOffset)); break;
+				}
+			}
+			this.data.push(newEntry);
+		}
+	}
+	else for(var i = 0; i < data.length; i++)
+		this.data.push(data[i]);
+	this.nrEntries = this.data.length;
+}
+
+function addScriptToHead(path, callBack){
+	var headTag = document.getElementsByTagName("head")[0];
+	var newScript = document.createElement("script");
+	newScript.type = "text/javascript";
+	newScript.src = path;
+	newScript.onload = callBack;
+	headTag.appendChild(newScript);
+}
+
+if(!window.fireFlexsimEvent)
+	window.fireFlexsimEvent = function(){};
+else window.validFireFlexsimEvent = true;
+
+var dependencies = [];
+function loadDependencies(element){
+	function onScriptLoaded() {
+		nrLoadsLeft--;
+		if(nrLoadsLeft == 0) {
+			fireFlexsimEvent("loaded");
+			if (element == undefined) {
+				for(var i = 0; i < charts.length; i++) {
+					initializeChart(charts[i], {}, true);
+				}
+			} else {
+				for (var i = 0; i < charts.length; i++)
+					initializeDynamicHTML(charts[i], dynamicReplicationData);
+			}
+		}
+	}
+
+	//Find the div tags that have "dependencies" and add those dependencies to the head so we're linked to the appropriate files
+	var divs = document.getElementsByTagName("div");
+	var charts = [];
+	var dependenciesToAdd = [];
+	for (var i = 0; i < divs.length; i++) {
+		var div = divs[i];
+		var addDependencies = div.getAttribute('data-dependencies');
+		if (addDependencies != undefined) {
+			charts.push(div);
+			var array = addDependencies.split(",");
+			for (var j = 0; j < array.length; j++) {
+				if (dependencies.indexOf(array[j]) == -1) {
+					dependencies = dependencies.concat(array[j]);
+					dependenciesToAdd = dependenciesToAdd.concat(array[j]);
+				}
+			}
+		}
+	}
+
+	var nrLoadsLeft = dependenciesToAdd.length;
+	for (var j = 0; j < dependenciesToAdd.length; j++) {
+		addScriptToHead(dependenciesToAdd[j], onScriptLoaded);
+	}
+	
+	if (nrLoadsLeft == 0) {
+		fireFlexsimEvent("loaded");
+		if (element != undefined) {
+			for (var i = 0; i < charts.length; i++)
+				initializeDynamicHTML(charts[i], dynamicReplicationData);
+		}
+	}
+}
+
+function onDocLoaded(){
+	try{
+	
+	console = document.getElementById("console");
+
+	var dynamicHTMLData = document.getElementById('dynamicHTMLData');
+	if(dynamicHTMLData) {
+		dynamicHTMLData.updateScriptData = function(newFunctionStatements) { //Called from the PFM window
+			eval(newFunctionStatements);
+		}
+		dynamicHTMLData.replaceInnerHTML = function (html, scenarioName, repNr) { //Called from the PFM window
+			this.innerHTML = html;
+			if(this.children.length > 0 && dynamicReplicationData && initializeDynamicHTML)
+			{
+				try{
+					var title = this.children[0].getAttribute('data-title');
+					if(title && scenarioName)
+						this.children[0].setAttribute('data-title', title + " " + scenarioName + " Replication " + repNr);
+					loadDependencies(this.children[0]);
+				}catch(e){printError(e);}
+			}
+		}
+	}
+	
+	loadDependencies();
+	
+	}catch(e){
+		printError(e);
+	}
+}
+
+if(document.addEventListener)
+	document.addEventListener('DOMContentLoaded', onDocLoaded, false);
+else if(document.attachEvent)
+    document.attachEvent('onDOMContentLoaded', onDocLoaded);
+
+</script>
+<script type="text/javascript" data-script-file="flexsimweb/pfm.js">
+var PFM_CANVAS = 1;
+var PFM_DATA_TABLE = 2;
+var PFM_SUMMARY = 3;
+var PFM_CORRELATION_PLOT = 4;
+
+
+
+function initializePfm(chartTypeParam, focusParam) {
+	var focus, chartType;
+	if(chartTypeParam) {
+		chartType = chartTypeParam;
+		this.setAttribute('data-chart-type', chartTypeParam);
+	}
+	else chartType = this.getAttribute('data-chart-type');
+	
+	this.setAttribute('data-is-pfm-chart', 'true');
+	if(focusParam != undefined) {
+		focus = focusParam;
+		this.setAttribute('data-focus', focus);
+	}
+	else focus = this.getAttribute('data-focus');
+	if(this.fullScreen
+			&& chartType != 'pfmdatatable'
+			&& chartType != 'pfmsummary')
+		this.style['overflow-y'] = 'hidden';
+	else this.style['overflow-y'] = 'auto';
+	if(chartType == "pfmchart" || chartType == "pfmhisto")
+		initializePfmCanvas(this, focus, chartType);
+	else if(chartType == "pfmdatatable")
+		initializePfmDataTable(this, focus);
+	else if(chartType == "pfmsummary")
+		initializePfmSummary(this, focus);
+	else if(chartType == "pfmcorrelationplot")
+		initializePfmCorrelationPlot(this, focus);
+		
+	this.onResize = function () {
+		if (this.canvas && this.canvas.onResize) {
+			this.canvas.onResize();
+			this.canvas.draw();
+		}
+	};
+}
+
+function pfmOnDocLoaded() {
+	var divs = document.getElementsByTagName("div");
+	for(var i = 0; i < divs.length; i++){
+		var div = divs[i];
+		if(!div.getAttribute('data-is-pfm-chart'))
+			continue;
+		div.fullScreen = div.className.indexOf('fullscreen') >= 0;
+		div.initializePfm = initializePfm;
+		div.setMember = function setMember(name, val) {
+			this[name] = val;
+		}
+		div.initializePfm();
+	}
+
+	return 0;
+}
+
+function initializePfmCanvas(pfmDiv, pfmIndex, chartType) {
+	if(!pfmDiv)
+		return;
+
+	var FLT_MAX = 100000000000000000000000.0;
+
+	pfmDiv.focus = pfmData[pfmIndex];
+	var nrScenarios = pfmScenarioNames.length;
+
+	pfmDiv.showHisto = chartType == 'pfmhisto';
+
+	if(!pfmDiv.showHisto) {
+		if(pfmDiv.showPoints == undefined) {
+			if(pfmDiv.getAttribute('data-show-points') != undefined)
+				pfmDiv.showPoints = pfmDiv.getAttribute('data-show-points') != 'none';
+			else pfmDiv.showPoints = true;
+		}
+		if(pfmDiv.showBoxPlot == undefined) {
+			if(pfmDiv.getAttribute('data-show-box-plot') != undefined)
+				pfmDiv.showBoxPlot = pfmDiv.getAttribute('data-show-box-plot') != 'none';
+			else pfmDiv.showBoxPlot = true;
+		}
+		if(pfmDiv.showMeanConfidence == undefined) {
+			if(pfmDiv.getAttribute('data-show-mean-std-dev') != undefined)
+				pfmDiv.showMeanConfidence = pfmDiv.getAttribute('data-show-mean-std-dev') != 'none';
+			else pfmDiv.showMeanConfidence = false;
+		}
+	}
+
+	if(pfmDiv.showHisto && pfmDiv.nrHistoBuckets == undefined) {
+		if(pfmDiv.getAttribute('data-nr-histo-buckets') != undefined)
+			pfmDiv.nrHistoBuckets = pfmDiv.getAttribute('data-nr-histo-buckets');
+		else pfmDiv.nrHistoBuckets = 10;
+	}
+
+	pfmDiv.chartType = PFM_CANVAS;
+
+	if (!pfmDiv.confidence) {
+		pfmDiv.confidence = pfmDiv.getAttribute('data-confidence');
+		if (pfmDiv.confidence == undefined)
+			pfmDiv.confidence = 90;
+	}
+
+	var innerHTML = "<canvas>This chart is not supported in this browser</canvas>";
+	pfmDiv.innerHTML = innerHTML;
+	var canvas = pfmDiv.getElementsByTagName("canvas")[0];
+	canvas.onResize = function() {
+		if(!pfmDiv.fullScreen) {
+			canvas.width = pfmDiv.clientWidth - 3;
+			canvas.height = pfmDiv.clientHeight - 5;
+		}
+	};
+	canvas.onResize();
+
+	var ctx = canvas.getContext('2d');
+	var popup = document.getElementById("flexsimpopup");
+	if(!pfmDiv.focus.sortedData)
+	{
+		var sortedData = [];
+		for(var i = 0; i < nrScenarios; i++) {
+			var scenario = [];
+			// first copy the unsorted data to a new array
+			var nrReps = pfmDiv.focus.data[i].length;
+			for(var j = 0; j < nrReps; j++)
+				scenario.push(pfmDiv.focus.data[i][j]);
+
+			// next sort the new array.
+			function sortFunc(a, b) { return a - b; }
+			scenario.sort(sortFunc);
+			sortedData.push(scenario);
+		}
+		pfmDiv.focus.sortedData = sortedData;
+	}
+	var CONF_90 = 0;
+	var CONF_95 = 1;
+	var CONF_99 = 2;
+
+	if(!pfmDiv.focus.boxPlot) {
+		pfmDiv.focus.confidenceMaxRange = [{ min: FLT_MAX, max: -FLT_MAX }, { min: FLT_MAX, max: -FLT_MAX }, { min: FLT_MAX, max: -FLT_MAX }];
+		function resolveConfidence(maxRange, boxPlot, index, confidence)
+		{
+			boxPlot.confidenceDist[index] = calculateConfidence(boxPlot.stdDev, nrReps, confidence);
+			maxRange[index].max = Math.max(boxPlot.mean + boxPlot.confidenceDist[index], maxRange[index].max);
+			maxRange[index].min = Math.min(boxPlot.mean - boxPlot.confidenceDist[index], maxRange[index].min);
+		}
+		var data = pfmDiv.focus.sortedData;
+		var boxPlot = [];
+		pfmDiv.focus.boxPlot = boxPlot;
+		var base, percentInto;
+
+		function calcPercentile(scenario, percentile, nrReps) {
+			var floatIndex = percentile*(nrReps-1);
+			var baseIndex = Math.floor(floatIndex);
+			var percentInto = floatIndex - baseIndex;
+			var base = data[scenario][baseIndex];
+			return base + percentInto * (baseIndex < nrReps - 1 ? data[scenario][baseIndex + 1] - base : 0);
+		}
+		
+		for(var i = 0; i < nrScenarios; i++) {
+			var temp = {};
+			boxPlot.push(temp);
+			var nrReps = pfmDiv.focus.data[i].length;
+			temp.boxBottom = calcPercentile(i, 0.25, nrReps);
+			temp.boxTop = calcPercentile(i, 0.75, nrReps);
+			temp.median = calcPercentile(i, 0.5, nrReps);
+			var sum = 0;
+			for(var j = 0; j < nrReps; j++)
+				sum += data[i][j];
+			temp.mean = sum / nrReps;
+		}
+		for(var i = 0; i < nrScenarios; i++) {
+			var sumSqrDiff = 0;
+			var nrReps = pfmDiv.focus.data[i].length;
+			for(var j = 0; j < nrReps; j++) {
+				var diff = boxPlot[i].mean - data[i][j];
+				sumSqrDiff += diff * diff;
+			}
+			boxPlot[i].stdDev = Math.sqrt(sumSqrDiff / Math.max(1, nrReps - 1));
+			boxPlot[i].confidenceDist = [0,0,0];
+			resolveConfidence(pfmDiv.focus.confidenceMaxRange, boxPlot[i], CONF_90, 90);
+			resolveConfidence(pfmDiv.focus.confidenceMaxRange, boxPlot[i], CONF_95, 95);
+			resolveConfidence(pfmDiv.focus.confidenceMaxRange, boxPlot[i], CONF_99, 99);
+		}
+	}
+
+	canvas.draw = function draw() {
+		var focus = pfmDiv.focus;
+
+		var pickedObj = null;
+
+		ctx.strokeStyle = "#c0c0c0";
+		ctx.fillStyle = "black";
+
+		// figure out the view y range by going through and finding the max and min values in the data
+		var maxY = -10000000000.0, minY = 10000000000.0;
+		for(var i = 0; i < nrScenarios; i++) {
+			var nrReps = focus.sortedData[i].length;
+			if(focus.sortedData[i][nrReps-1] > maxY) maxY = focus.sortedData[i][nrReps-1];
+			if(focus.sortedData[i][0] < minY) minY = focus.sortedData[i][0];
+		}
+		var rangeMax = maxY, rangeMin = minY;
+		var confIndex = pfmDiv.confidence == 90 ? CONF_90 : (pfmDiv.confidence == 95 ? CONF_95 : CONF_99);
+		if(!pfmDiv.showHisto) {
+			var marginY = (maxY - minY)*0.1;
+			if(marginY == 0) marginY = 1;
+			rangeMax += marginY;
+			rangeMin -= marginY;
+			if (rangeMin < 0 && minY >= 0)
+				rangeMin = 0;
+			if (pfmDiv.showMeanConfidence) {
+				rangeMax = Math.max(rangeMax, pfmDiv.focus.confidenceMaxRange[confIndex].max);
+				rangeMin = Math.min(rangeMin, pfmDiv.focus.confidenceMaxRange[confIndex].min);
+			}
+		}
+		var range = rangeMax - rangeMin;
+	    // now figure out the precision
+		var precision = 0;
+		var tempRange = range;
+		while (tempRange < 40 && tempRange > 0) {
+		    precision++;
+		    tempRange *= 10;
+		}
+
+		var marginTop = 10.5;
+		if(pfmDiv.getAttribute('data-title') != 'none') {
+			// draw the title
+			ctx.font = "bold 13pt Tahoma";
+			ctx.textAlign = "center";
+			var title = pfmDiv.getAttribute('data-title') || focus.name;
+			ctx.fillText(title, canvas.width / 2, 18);
+			ctx.textAlign = "left";
+			marginTop += 20;
+		}
+
+		var marginLeft = 5.5, marginRight = 10.5, marginBottom = 35.5;
+		var graphBottom = this.height - marginBottom;
+		var graphSy = this.height - (marginTop + marginBottom);
+		if(graphSy < 5)
+			return;
+
+		ctx.font = "10pt Tahoma";
+
+		if(pfmDiv.showHisto) {
+			var bucketRange = range / pfmDiv.nrHistoBuckets;
+			var maxBucketSize = 0;
+			// find the maximum bucket size
+			var histograms = [];
+			var histogramMaxes = [];
+			var maxScenarioNameWidth = 0;
+			var maxBucketSizeSum = 0;
+
+
+			ctx.font = "10pt Tahoma";
+			var xReset = 13;
+			var yInterval = 18;
+			var x = xReset, y = 25;
+
+			ctx.strokeStyle = "#555555";
+			var objectName, width;
+			// draw object (color) legend
+			for(var i = 0; i < nrScenarios; i++) {
+				objectName = pfmScenarioNames[i];
+				width = 20 + ctx.measureText(objectName).width;
+				if(x + width > canvas.width){
+					x = xReset;
+					y += yInterval;
+				}
+				// draw the legend color box and the name of the object
+				ctx.fillStyle = nrScenarios <= 1 ?  "#99aadd" : getIndexedColor(i+1, [40,80], [50,80]);
+				ctx.fillRect(x,y, 10, 10);
+				ctx.strokeRect(pixelRound(x),pixelRound(y), 10, 10);
+				ctx.fillStyle = "#000000";
+				ctx.fillText(objectName, x + 15, y + 10);
+				x += width;
+			}
+			if(x != xReset) y += yInterval;
+			y += 5;
+			var graphTop = pixelRound(y);
+			var graphBottom = pixelRound(canvas.height - marginBottom);
+			graphSy = graphBottom - graphTop;
+			var maxNrReps = 1;
+
+			for(var i = 0; i < nrScenarios; i++) {
+				var width = ctx.measureText(pfmScenarioNames[i]).width;
+				var nrReps = focus.sortedData[i].length;
+				maxNrReps = Math.max(maxNrReps, nrReps);
+				var index = 0;
+				var scenarioBuckets = [];
+				var maxScenarioBucketSize = 0;
+				for(var j = 0, curBucketMax = rangeMin + bucketRange; j < pfmDiv.nrHistoBuckets; j++, curBucketMax += bucketRange) {
+					var startIndex = index;
+					while(index < nrReps && focus.sortedData[i][index] <= curBucketMax)
+						index++;
+					var bucketSize = index - startIndex;
+					if(bucketSize > maxScenarioBucketSize)
+						maxScenarioBucketSize = bucketSize;
+					scenarioBuckets.push(bucketSize);
+				}
+				maxScenarioBucketSize *= 1.1;
+				histogramMaxes.push(maxScenarioBucketSize);
+				maxBucketSizeSum += maxScenarioBucketSize;
+				if(maxScenarioBucketSize > maxBucketSize)
+					maxBucketSize = maxScenarioBucketSize;
+				histograms.push(scenarioBuckets);
+			}
+
+
+			var yGrid = new YGrid(ctx, 0, maxBucketSize / maxNrReps, graphTop, graphSy, 20, false);
+			marginLeft += yGrid.width;
+			graphSx = canvas.width - (marginLeft + marginRight);
+
+			var bucketSx = graphSx / pfmDiv.nrHistoBuckets;
+			if (nrScenarios > 1) {
+                // stripe the histogram with background gray every other bucket
+                // to better distinguish each bucket on multiple scenarios
+			    ctx.fillStyle = "#eeeeee";
+			    for (var j = 0; j < pfmDiv.nrHistoBuckets; j += 2) {
+			        var bucketLeft = marginLeft + (j * bucketSx);
+			        ctx.fillRect(bucketLeft, graphTop, bucketSx, graphSy);
+			    }
+			}
+
+			ctx.strokeStyle = "#a0a0a0";
+			ctx.fillStyle = "black";
+			yGrid.draw(marginLeft, graphSx);
+
+			var xGrid = new XGrid(ctx, rangeMin, rangeMax, marginLeft, graphSx);
+			xGrid.draw(graphBottom + 3, -3);
+
+
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = "#707070";
+			var barMargin = Math.min(8, bucketSx*0.15);
+			var barSx = (bucketSx - 2*barMargin)/nrScenarios;
+			for(var j = 0; j < pfmDiv.nrHistoBuckets; j++) {
+				var bucketLeft = marginLeft + (j * bucketSx);
+				for(var i = 0; i < nrScenarios; i++) {
+					var left = pixelRound(bucketLeft + barMargin + i*barSx);
+					var right = pixelRound(bucketLeft + barMargin + (i+1)*barSx);
+					ctx.fillStyle = nrScenarios == 1 ? "#99aadd" : getIndexedColor(i+1, [40,80], [50,80]);
+					var bucketSy = Math.floor(graphSy * histograms[i][j] / maxBucketSize);
+					ctx.fillRect(left, graphBottom, right - left, -bucketSy);
+					ctx.strokeRect(left, graphBottom, right - left, -bucketSy);
+					if(canvas.pickMode == PICK_MODE_HOVER
+							&& canvas.pickCursorX < right
+							&& canvas.pickCursorX > left
+							&& canvas.pickCursorY > graphBottom - bucketSy
+							&& canvas.pickCursorY < graphBottom) {
+						var min = rangeMin + j * bucketRange, max = min + bucketRange;
+						canvas.pickedObj = {left:left, right:right, top:graphBottom - bucketSy,
+						    text: pfmScenarioNames[i]
+                                + '<br/>Range: ' + min.toFixed(precision)
+                                    + ' - ' + max.toFixed(precision)
+                                + '<br/>Proportion: ' + (histograms[i][j] / focus.sortedData[i].length).toFixed(2)
+                                + '<br/># Replications: ' + histograms[i][j]
+						};
+					}
+				}
+			}
+			ctx.strokeStyle = "#a0a0a0";
+			ctx.lineWidth = 1;
+			ctx.strokeRect(marginLeft, graphTop, graphSx, graphSy);
+		} else {
+
+			if(focus.valueName && focus.valueName != 'Value') {
+				ctx.save();
+				ctx.translate(0, marginTop + 0.5*graphSy);
+				ctx.rotate(-Math.PI / 2);
+				ctx.textAlign = "center";
+				ctx.fillText(focus.valueName, 0, 13);
+				ctx.restore();
+				marginLeft += 15;
+			}
+
+			var yGrid = new YGrid(ctx, rangeMin, rangeMax, marginTop, graphSy, 18);
+			marginLeft += yGrid.width;
+			var graphSx = this.width - (marginLeft + marginRight);
+			if(graphSx < 5)
+				return;
+			yGrid.draw(marginLeft, graphSx);
+
+			var scenarioWidth = graphSx / nrScenarios;
+			var x = marginLeft;
+			for(var i = 0; i < nrScenarios; i++) {
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = "#c0c0c0";
+				if(i > 0)
+					ctx.strokeRect(Math.floor(x) + 0.5, marginTop, 0, graphSy);
+				var scenarioX = x;
+				var nrReps = focus.data[i].length;
+				var xCenter = x + 0.5*scenarioWidth;
+				if(pfmDiv.showPoints) {
+					ctx.fillStyle = getIndexedColor(i+1, 50, 50);
+					var incX = scenarioWidth / (nrReps + 1);
+					x += incX;
+					for(var j = 0; j < nrReps; j++) {
+						var val = focus.data[i][j];
+						var y = Math.floor(graphBottom - graphSy * (val - rangeMin)/range) + 0.5;
+						var tempX = Math.floor(x) + 0.5;
+						ctx.beginPath();
+						ctx.moveTo(tempX, y + 3);
+						ctx.lineTo(tempX - 3, y);
+						ctx.lineTo(tempX, y - 3);
+						ctx.lineTo(tempX + 3, y);
+						ctx.closePath();
+						ctx.fill();
+						if(canvas.pickMode
+								&& canvas.pickCursorX < x + 3
+								&& canvas.pickCursorX > x - 3
+								&& canvas.pickCursorY > y - 3
+								&& canvas.pickCursorY < y + 3) {
+							if(canvas.pickMode == PICK_MODE_HOVER)
+								canvas.pickedObj = {top:y - 3,left:x,right:x,isPoint:true,text:'Replication: ' + (j + 1) + '<br/>Value: ' + focus.data[i][j].toFixed(precision)};
+							else canvas.pickedPoint = {scenario:i+1,replication:j+1};
+						}
+						x += incX;
+					}
+				}
+				if(pfmDiv.showBoxPlot) {
+					var boxYMin = Math.floor(graphBottom - graphSy * (focus.boxPlot[i].boxBottom - rangeMin)/range);
+					var boxYMax = Math.floor(graphBottom - graphSy * (focus.boxPlot[i].boxTop - rangeMin)/range);
+					var yMedian = Math.floor(graphBottom - graphSy * (focus.boxPlot[i].median - rangeMin)/range);
+					var sampleYMin = Math.floor(graphBottom - graphSy * (focus.sortedData[i][0] - rangeMin)/range);
+					var sampleYMax = Math.floor(graphBottom - graphSy * (focus.sortedData[i][nrReps - 1] - rangeMin)/range);
+					ctx.strokeStyle = "#000000";
+					ctx.lineWidth = 2;
+					var boxWidth = Math.min(scenarioWidth, 30);
+					ctx.strokeRect(Math.floor(xCenter - 0.5*boxWidth), boxYMin, boxWidth, boxYMax - boxYMin);
+					ctx.strokeRect(Math.floor(xCenter - 0.5*boxWidth), yMedian, boxWidth, 0);
+					ctx.beginPath();
+					ctx.moveTo(xCenter, boxYMin);
+					ctx.lineTo(xCenter, sampleYMin);
+					ctx.moveTo(xCenter - 0.4*boxWidth, sampleYMin);
+					ctx.lineTo(xCenter + 0.4*boxWidth, sampleYMin);
+					ctx.moveTo(xCenter, boxYMax);
+					ctx.lineTo(xCenter, sampleYMax);
+					ctx.moveTo(xCenter - 0.4*boxWidth, sampleYMax);
+					ctx.lineTo(xCenter + 0.4*boxWidth, sampleYMax);
+					ctx.stroke();
+					if(canvas.pickMode == PICK_MODE_HOVER
+							&& canvas.pickCursorX < xCenter + 0.5*boxWidth
+							&& canvas.pickCursorX > xCenter - 0.5*boxWidth
+							&& canvas.pickCursorY < sampleYMin + 3
+							&& canvas.pickCursorY > sampleYMax - 3) {
+						if(canvas.pickCursorY > sampleYMin - 3
+								&& canvas.pickCursorY < sampleYMin + 3) {
+							canvas.pickedObj = {top:sampleYMin - 3,left:xCenter - 0.5*boxWidth,right:xCenter + 0.5*boxWidth,
+								text:'Min: ' + focus.sortedData[i][0].toFixed(precision)};
+						}
+						else if(canvas.pickCursorY > sampleYMax - 3
+								&& canvas.pickCursorY < sampleYMax + 3) {
+							canvas.pickedObj = {top:sampleYMax - 3,left:xCenter - 0.5*boxWidth,right:xCenter + 0.5*boxWidth,
+							    text: 'Max: ' + focus.sortedData[i][nrReps - 1].toFixed(precision)
+							};
+						}
+						else if(canvas.pickCursorY > boxYMin - 3
+								&& canvas.pickCursorY < boxYMin + 3) {
+							canvas.pickedObj = {top:boxYMin - 3,left:xCenter - 0.5*boxWidth,right:xCenter + 0.5*boxWidth,
+							    text: '25%: ' + focus.boxPlot[i].boxBottom.toFixed(precision)
+							};
+						}
+						else if(canvas.pickCursorY > boxYMax - 3
+								&& canvas.pickCursorY < boxYMax + 3) {
+							canvas.pickedObj = {top:boxYMax - 3,left:xCenter - 0.5*boxWidth,right:xCenter + 0.5*boxWidth,
+							    text: '75%: ' + focus.boxPlot[i].boxTop.toFixed(precision)
+							};
+						}
+						else if(canvas.pickCursorY > yMedian - 3
+								&& canvas.pickCursorY < yMedian + 3) {
+							canvas.pickedObj = {top:yMedian - 3,left:xCenter - 0.5*boxWidth,right:xCenter + 0.5*boxWidth,
+							    text: 'Median: ' + focus.boxPlot[i].median.toFixed(precision)
+							};
+						}
+					}
+				}
+				if(pfmDiv.showMeanConfidence) {
+					var meanY = Math.floor(graphBottom - graphSy * (focus.boxPlot[i].mean - rangeMin) / range);
+					var confidenceDist = focus.boxPlot[i].confidenceDist[confIndex];
+					var stdDevDistY = graphSy * (confidenceDist / range);
+					ctx.strokeStyle = "#909090";
+					ctx.lineWidth = 4;
+					ctx.lineCap = 'round';
+					ctx.beginPath();
+					ctx.arc(xCenter, meanY, 3, 0, 2*Math.PI, 0);
+					ctx.moveTo(xCenter, meanY - 3);
+					ctx.lineTo(xCenter, meanY - stdDevDistY);
+					ctx.moveTo(xCenter, meanY + 3);
+					ctx.lineTo(xCenter, meanY + stdDevDistY);
+					ctx.stroke();
+					ctx.lineCap = 'butt';
+
+					if(canvas.pickMode == PICK_MODE_HOVER
+							&& canvas.pickCursorX < xCenter + 6
+							&& canvas.pickCursorX > xCenter - 6
+							&& canvas.pickCursorY < meanY + stdDevDistY
+							&& canvas.pickCursorY > meanY - stdDevDistY) {
+						if(canvas.pickCursorY > meanY - 6
+								&& canvas.pickCursorY < meanY + 6) {
+							canvas.pickedObj = {top:meanY - 7,left:xCenter - 0.5*scenarioWidth,right:xCenter + 0.5*scenarioWidth,
+							    text: 'Sample Mean: ' + focus.boxPlot[i].mean.toFixed(precision)
+							};
+						} else if(canvas.pickCursorX < xCenter + 2
+								&& canvas.pickCursorX > xCenter - 2) {
+							canvas.pickedObj = {top:meanY - stdDevDistY,left:xCenter - 0.5*scenarioWidth,right:xCenter + 0.5*scenarioWidth,
+								text: 'Confidence Interval: ' + (focus.boxPlot[i].mean - confidenceDist).toFixed(precision)
+										+ ' - ' + (focus.boxPlot[i].mean + confidenceDist).toFixed(precision)
+							};
+						}
+					}
+				}
+				x = scenarioX + scenarioWidth;
+			}
+			ctx.lineWidth = 1;
+			ctx.fillStyle = "#000000";
+			x = marginLeft;
+			ctx.textAlign = "center";
+			for(var i = 0; i < nrScenarios; i++) {
+				var name = pfmScenarioNames[i];
+				var width = ctx.measureText(name).width;
+				if(width > scenarioWidth - 5)
+					name = "S" + (i + 1);
+				ctx.fillText(name, x + 0.5*scenarioWidth, graphBottom + 12, scenarioWidth - 10);
+				x += scenarioWidth;
+			}
+			ctx.textAlign = "left";
+
+
+			if(pfmDiv.showBoxPlot || pfmDiv.showMeanConfidence) {
+				ctx.font = "8pt Tahoma";
+				ctx.fillStyle = "#404040";
+				ctx.strokeStyle = "#404040";
+				ctx.lineWidth = 1;
+				var y = canvas.height - 5.5;
+				var x = 5.5;
+				if(pfmDiv.showBoxPlot) {
+					ctx.strokeRect(x, y, 10, -10);
+					ctx.strokeRect(x, y - 5, 10, 0);
+					var text = "25% - 50% - 75%";
+					ctx.fillText(text, x + 15, y - 1);
+					x += 15 + ctx.measureText(text).width + 20;
+
+					ctx.beginPath();
+					ctx.moveTo(x, y);
+					ctx.lineTo(x + 10, y);
+					ctx.moveTo(x + 5, y);
+					ctx.lineTo(x + 5, y - 10);
+					ctx.moveTo(x, y - 10);
+					ctx.lineTo(x + 10, y - 10);
+					ctx.stroke();
+					text = "Min - Max";
+					ctx.fillText(text, x + 15, y - 1);
+					x += 15 + ctx.measureText(text).width + 20.5;
+				}
+
+				if(pfmDiv.showMeanConfidence) {
+					ctx.beginPath();
+					ctx.arc(x, y - 5, 2, 0, 2*Math.PI, 0);
+					ctx.moveTo(x, y - 7);
+					ctx.lineTo(x, y - 11);
+					ctx.moveTo(x, y - 3);
+					ctx.lineTo(x, y + 1);
+					ctx.stroke();
+
+					text = "Mean Confidence Interval";
+					ctx.fillText(text, x + 8, y - 1);
+					x += 8 + ctx.measureText(text).width + 20.5;
+				}
+			}
+
+			/*
+			// draw resizer thumbnail (commented because there were issues)
+			if(!pfmDiv.fullScreen) {
+				ctx.strokeStyle = 'gray';
+				ctx.beginPath();
+				ctx.moveTo(canvas.width - 12, canvas.height);
+				ctx.lineTo(canvas.width, canvas.height - 12);
+				ctx.moveTo(canvas.width - 8, canvas.height);
+				ctx.lineTo(canvas.width, canvas.height - 8);
+				ctx.moveTo(canvas.width - 4, canvas.height);
+				ctx.lineTo(canvas.width, canvas.height - 4);
+				ctx.stroke();
+
+				if(canvas.pickMode == PICK_MODE_CLICK
+						&& canvas.pickCursorX > canvas.width - 10
+						&& canvas.pickCursorY > canvas.height - 10)
+				{
+					pfmDiv.resizingNow = true;
+					pfmDiv.resizeStartCursorX = canvas.pickCursorX;
+					pfmDiv.resizeStartCursorY = canvas.pickCursorY;
+					pfmDiv.resizeStartSx = pfmDiv.offsetWidth;
+					pfmDiv.resizeStartSy = pfmDiv.offsetHeight;
+				}
+			}
+			*/
+
+			ctx.strokeStyle = "#a0a0a0";
+			ctx.lineWidth = 1;
+			ctx.strokeRect(marginLeft, marginTop, graphSx, graphSy);
+		}
+	}
+
+	pfmDiv.canvas = canvas;
+	pfmDiv.repaint = function repaint() {ctx.clearRect(0,0, canvas.width, canvas.height); canvas.draw();};
+
+	canvas.onMouseMove = function onMouseMove(e){
+		setMouseOffsets(e);
+		if(pfmDiv.resizingNow) {
+			var diffX = e.offsetX - pfmDiv.resizeStartCursorX;
+			var diffY = e.offsetY - pfmDiv.resizeStartCursorY;
+			var newWidth = (pfmDiv.resizeStartSx + diffX);
+			var newHeight = (pfmDiv.resizeStartSy + diffY);
+			pfmDiv.style.width = newWidth + 'px';
+			pfmDiv.style.height = newHeight + 'px';
+			canvas.width = newWidth - 3;
+			canvas.height = newHeight - 5;
+			ctx.clearRect(0,0,canvas.width, canvas.height);
+			canvas.draw();
+			return;
+		}
+		if (!popup)
+		    return;
+		canvas.pickMode = PICK_MODE_HOVER;
+		canvas.pickedObj = null;
+		var docPos = findDocumentPos(canvas);
+		canvas.pickCursorX = e.offsetX || (e.clientX + docPos[0]);
+		canvas.pickCursorY = e.offsetY || (e.clientY + docPos[1]);
+		canvas.getContext('2d').clearRect(0,0,canvas.width, canvas.height);
+		canvas.draw();
+		canvas.pickMode = 0;
+		var pickedObj = canvas.pickedObj;
+		if(pickedObj) {
+			popup.style.display = "block";
+			var innerHTML = pickedObj.text;
+			if(pickedObj.isPoint
+				&& pfmDiv.focus.statDataFocus != undefined
+				&& window.validStatData && window.validStatData[pfmDiv.focus.statDataFocus] == 1)
+				innerHTML += "<br/><span style='font-size:70%;font-style:italic;color:gray'>double-click...</span>";
+			popup.innerHTML = innerHTML;
+			var pos = findDocumentPos(canvas);
+			var scrollPos = windowScrollPos();
+			popup.style.left = (pos[0] - scrollPos.left + Math.max(0,pickedObj.left + pickedObj.right-popup.offsetWidth)/2)+'px';
+			popup.style.top = (pos[1] - scrollPos.top - pfmDiv.scrollTop + pickedObj.top - popup.offsetHeight - 5)+'px';
+		}
+		else popup.style.display = "none";
+	}
+	/*
+	canvas.onMouseDown = function onMouseDown(e){
+		canvas.pickMode = PICK_MODE_CLICK;
+		canvas.pickCursorX = e.offsetX;
+		canvas.pickCursorY = e.offsetY;
+		canvas.getContext('2d').clearRect(0,0,canvas.width, canvas.height);
+		canvas.draw();
+		canvas.pickMode = 0;
+		if(pfmDiv.resizingNow)
+			canvas.addEventListener('mouseout', canvas.onMouseMove, false);
+	}
+	canvas.onMouseUp = function onMouseUp(e){
+		if(pfmDiv.resizingNow) {
+			canvas.removeEventListener('mouseout', canvas.onMouseMove, false);
+			pfmDiv.resizingNow = false;
+		}
+	}*/
+
+	canvas.onWindowResize = function onWindowResize(){
+		if(pfmDiv.fullScreen){
+			var vp = viewport();
+			canvas.width = vp.width - 3;
+			canvas.height = vp.height - 7;
+		}
+		canvas.draw();
+	}
+
+	canvas.addEventListener('mousemove', canvas.onMouseMove, false);
+	//canvas.addEventListener('mousedown', canvas.onMouseDown, false);
+	//canvas.addEventListener('mouseup', canvas.onMouseUp, false);
+	canvas.onWindowResize();
+	if(pfmDiv.fullScreen)
+			window.addEventListener("resize", canvas.onWindowResize, false);
+	if(pfmDiv.focus.statDataFocus != undefined
+			&& validStatData && validStatData[pfmDiv.focus.statDataFocus] == 1) {
+		canvas.onDblClick = function onDblClick(e) {
+			canvas.pickMode = PICK_MODE_CLICK;
+			var docPos = findDocumentPos(canvas);
+			canvas.pickCursorX = e.offsetX || (e.clientX + docPos[0]);
+			canvas.pickCursorY = e.offsetY || (e.clientY + docPos[1]);
+			canvas.pickedPoint = null;
+			canvas.getContext('2d').clearRect(0,0,canvas.width, canvas.height);
+			canvas.draw();
+			canvas.pickMode = 0;
+			if(canvas.pickedPoint) {
+				var data, replicationData;
+				if(window.statData) {
+					data = window.statData[pfmDiv.focus.statDataFocus];
+					replicationData = data.replicationData[canvas.pickedPoint.scenario - 1][canvas.pickedPoint.replication - 1];
+				}
+				else {
+					if(window.fireFlexsimEvent) {
+						window.globalStatData = null;
+						pfmDiv.updateStatData = function (updateScript) {
+							eval(updateScript);
+							data = window.globalStatData;
+							replicationData = data.data;
+						}
+						fireFlexsimEvent('updateStatData', canvas.pickedPoint.scenario, canvas.pickedPoint.replication);
+					}
+				}
+				if(data) {
+					// for some reason I have to show the overlay twice to get the canvas to scale right
+					showOverlay(true);
+					var dialogDiv = document.getElementById('dialogdiv');
+					dialogDiv.innerHTML = data.html;
+					dialogDiv.children[0].sizeToNeeds = true;
+					dialogDiv.children[0].style.width = Math.min(600, Math.max(300, viewport().width - 200)) + 'px';
+					dialogDiv.children[0].style.height = '200px';
+					var title = dialogDiv.children[0].getAttribute('data-title');
+					if(title)
+						dialogDiv.children[0].setAttribute('data-title', title + " - " + pfmScenarioNames[canvas.pickedPoint.scenario - 1]
+								+ " Replication " + canvas.pickedPoint.replication);
+
+					data.initialize(dialogDiv.children[0], replicationData);
+					showOverlay(true);
+				}
+			}
+			canvas.pickedPoint = null;
+		}
+		canvas.addEventListener('dblclick', canvas.onDblClick, false);
+	}
+}
+
+function appendCol(tagName, value, row) {
+	var col = document.createElement(tagName);
+	col.innerHTML = value;
+	row.appendChild(col);
+	return col;
+}
+
+
+function initializePfmDataTable(pfmDiv, pfmIndex) {
+	if(!pfmDiv)
+		return;
+
+	pfmDiv.focus = pfmData[pfmIndex];
+	var focus = pfmDiv.focus;
+	var nrScenarios = pfmScenarioNames.length;
+	var maxNrReps = 0;
+	for(var i = 0; i < nrScenarios; i++)
+		if(pfmDiv.focus.data[i].length > maxNrReps)
+			maxNrReps = pfmDiv.focus.data[i].length;
+	pfmDiv.chartType = PFM_DATA_TABLE;
+	
+	if(!focus.dataTable) {
+		focus.dataTable = document.createElement('table');
+		var table = focus.dataTable;
+		table.style.margin = 'auto';
+		table.className = 'pfmdatatable';
+		if(pfmDiv.getAttribute('data-title') != 'none') {
+			var row = document.createElement('tr');
+			var title = pfmDiv.getAttribute('data-title') || pfmDiv.focus.name;
+			appendCol('th', title, row).setAttribute('colspan', maxNrReps + 5)
+			table.appendChild(row);
+		}
+		var row = document.createElement('tr');
+		table.appendChild(row);
+		for(var i = 0; i <= maxNrReps; i++) {
+			var col = document.createElement('th');
+			row.appendChild(col);
+			if(i > 0)
+				col.innerHTML = i;
+		}
+		for(var i = 0; i < nrScenarios; i++) {
+			var row = document.createElement('tr');
+			table.appendChild(row);
+			var col = document.createElement('th');
+			col.className = 'rowhead';
+			row.appendChild(col);
+			col.innerHTML = pfmScenarioNames[i];
+			var nrReps = pfmDiv.focus.data[i].length;
+			for(var j = 0; j < maxNrReps; j++) {
+				var col = document.createElement('td');
+				if(j < nrReps)
+					col.innerHTML = pfmDiv.focus.data[i][j];
+				row.appendChild(col);
+			}
+		}
+	}
+	pfmDiv.innerHTML = '';
+	pfmDiv.appendChild(focus.dataTable);
+}
+function initializePfmSummary(pfmDiv, pfmIndex) {
+	if(!pfmDiv)
+		return;
+	
+	pfmDiv.focus = pfmData[pfmIndex];
+	var focus = pfmDiv.focus;
+	var nrScenarios = pfmScenarioNames.length;
+	pfmDiv.chartType = PFM_SUMMARY;
+	if(!pfmDiv.confidence) {
+		pfmDiv.confidence = pfmDiv.getAttribute('data-confidence');
+		if(pfmDiv.confidence == undefined)
+			pfmDiv.confidence = 90;
+	}
+	
+	if(!focus.summary) {
+		focus.summary = [];
+		for(var i = 0; i < nrScenarios; i++) {
+			var scenSummary = {};
+			scenSummary.min = focus.data[i][0];
+			scenSummary.max = focus.data[i][0];
+			var sum = focus.data[i][0];
+			var nrReps = focus.data[i].length;
+			for(var j = 1; j < nrReps; j++) {
+				var temp = focus.data[i][j];
+				sum += temp;
+				if(temp > scenSummary.max) scenSummary.max = temp;
+				if(temp < scenSummary.min) scenSummary.min = temp;
+			}
+			scenSummary.mean = sum / nrReps;
+			var sumSqrDev = 0;
+			for(var j = 0; j < nrReps; j++) {
+				var temp = focus.data[i][j] - scenSummary.mean;
+				sumSqrDev += temp * temp;
+			}
+			if(nrReps > 1)
+				scenSummary.stdDev = Math.sqrt(sumSqrDev / (nrReps - 1));
+			else scenSummary.stdDev = 0;
+			scenSummary.confidenceDist90 = calculateConfidence(scenSummary.stdDev, nrReps, 90);
+			scenSummary.confidenceDist95 = calculateConfidence(scenSummary.stdDev, nrReps, 95);
+			scenSummary.confidenceDist99 = calculateConfidence(scenSummary.stdDev, nrReps, 99);
+			focus.summary.push(scenSummary);
+		}
+	}
+	// find the minimum min-max range of all the scenarios. This will determine the precision to use
+	var FLT_MAX = 100000000000000000000000.0;
+	var minRange = FLT_MAX;
+	var dataMax = 0.0;
+	var dataMin = FLT_MAX;
+	for (var i = 0; i < nrScenarios; i++) {
+		if (focus.summary[i].max > dataMax)
+			dataMax = focus.summary[i].max;
+		if (focus.summary[i].min < dataMin)
+			dataMin = focus.summary[i].min;
+		var range = focus.summary[i].max - focus.summary[i].min;
+		if (range > 0 && range < minRange)
+			minRange = range;
+		var confidenceDist = focus.summary[i].confidenceDist90;
+		if (confidenceDist > 0 && confidenceDist < minRange)
+			minRange = confidenceDist;
+	}
+
+	// now figure out the precision
+	var precision = 0;
+	if (dataMax - dataMin > 0 && minRange == FLT_MAX)
+		minRange = dataMax - dataMin;
+
+	if (minRange != FLT_MAX) {
+		while (minRange < 10) {
+			precision++;
+			minRange *= 10;
+		}
+	} else precision = 2;
+	
+	if(!focus.summaryTable) {
+		focus.summaryTable = document.createElement('table');
+		focus.summaryTable.style.margin = 'auto';
+		focus.meanMinCells = [];
+		focus.meanMaxCells = [];
+		var table = focus.summaryTable;
+		table.className = 'pfmsummary';
+		if(pfmDiv.getAttribute('data-title') != 'none') {
+			var row = document.createElement('tr');
+			var title = pfmDiv.getAttribute('data-title') || pfmDiv.focus.name;
+			var col = appendCol('th', title, row);
+			col.setAttribute('style', 'text-align:center;font-size:120%;font-weight:bold');
+			col.setAttribute('colspan', 9);
+			table.appendChild(row);
+		}
+		var row = document.createElement('tr');
+		table.appendChild(row);
+		appendCol('td', ' ', row);
+		focus.meanTitleCell = appendCol('th', ' ', row);
+		focus.meanTitleCell.setAttribute('colspan', 5);
+		appendCol('th', 'Sample Std Dev', row);
+		appendCol('th', 'Min', row);
+		appendCol('th', 'Max', row);
+
+        // now go through and build the table html
+		for(var i = 0; i < nrScenarios; i++) {
+			var row = document.createElement('tr');
+			table.appendChild(row);
+			appendCol('th', pfmScenarioNames[i], row).className = 'rowhead';
+			focus.meanMinCells.push(appendCol('td', '', row));
+			appendCol('td', '<', row);
+			appendCol('td', focus.summary[i].mean.toFixed(precision), row);
+			appendCol('td', '<', row);
+			focus.meanMaxCells.push(appendCol('td', '', row));
+			appendCol('td', focus.data[i].length > 1 ? focus.summary[i].stdDev.toFixed(precision) : "N/A", row);
+			appendCol('td', focus.summary[i].min.toFixed(precision), row);
+			appendCol('td', focus.summary[i].max.toFixed(precision), row);
+		}
+	}
+
+	focus.meanTitleCell.innerHTML = 'Mean (' + pfmDiv.confidence + '% Confidence)';
+	for(var i = 0; i < nrScenarios; i++) {
+		var confidenceDist = pfmDiv.confidence == 90 ? focus.summary[i].confidenceDist90
+				: (pfmDiv.confidence == 95 ? focus.summary[i].confidenceDist95 : focus.summary[i].confidenceDist99);
+		if (confidenceDist > 0) {
+		    focus.meanMinCells[i].innerHTML = (focus.summary[i].mean - confidenceDist).toFixed(precision);
+		    focus.meanMaxCells[i].innerHTML = (focus.summary[i].mean + confidenceDist).toFixed(precision);
+		} else {
+		    focus.meanMinCells[i].innerHTML = "N/A";
+		    focus.meanMaxCells[i].innerHTML = "N/A";
+		}
+	}
+
+	pfmDiv.innerHTML = "";
+	pfmDiv.appendChild(focus.summaryTable);
+}
+
+function initializePfmCorrelationPlot(pfmDiv, pfmIndex) {
+	if(!pfmDiv)
+		return;
+
+	// erase any correlation data if I've switched focuses
+	if(pfmDiv.focus && pfmDiv.focus != pfmData[pfmIndex])
+		pfmDiv.correlationData = null;
+
+	pfmDiv.focus = pfmData[pfmIndex];
+	var toPfmIndex = pfmDiv.correlateToIndex;
+	if(toPfmIndex == undefined || toPfmIndex == null)
+		toPfmIndex = pfmDiv.getAttribute('data-correlate-to');
+	if(toPfmIndex == undefined || toPfmIndex == null)
+		toPfmIndex = 0;
+
+
+	pfmDiv.correlateTo = pfmData[toPfmIndex];
+	var focus = pfmDiv.focus;
+	var correlateTo = pfmDiv.correlateTo;
+	var nrScenarios = pfmScenarioNames.length;
+	pfmDiv.chartType = PFM_CORRELATION_PLOT;
+
+	pfmDiv.innerHTML = "<canvas>This chart is not supported in this browser</canvas>";
+	var canvas = pfmDiv.getElementsByTagName("canvas")[0];
+	pfmDiv.canvas = canvas;
+	canvas.onResize = function() {
+		if(!pfmDiv.fullScreen) {
+			canvas.width = pfmDiv.clientWidth - 3;
+			canvas.height = pfmDiv.clientHeight - 5;
+		}
+	};
+	
+	canvas.onResize();
+
+	var ctx = canvas.getContext('2d');
+	var popup = document.getElementById("flexsimpopup");
+
+	if(!pfmDiv.correlationData)
+		pfmDiv.correlationData = [];
+	while(pfmDiv.correlationData.length <= toPfmIndex)
+		pfmDiv.correlationData.push({});
+	var corData = pfmDiv.correlationData[toPfmIndex];
+	if(!corData.scenarios) {
+		corData.scenarios = [];
+		corData.xMin = 10000000000;
+		corData.xMax = -10000000000;
+		corData.yMin = 10000000000;
+		corData.yMax = -10000000000;
+		for(var i = 0; i < nrScenarios; i++) {
+			var temp = {};
+			var sumX = 0, sumY = 0, sumXY = 0;
+			var nrReps = Math.min(focus.data[i].length, correlateTo.data[i].length);
+			for(var j = 0; j < nrReps; j++) {
+				var x = focus.data[i][j], y = correlateTo.data[i][j];
+				if(x > corData.xMax) corData.xMax = x;
+				if(x < corData.xMin) corData.xMin = x;
+				if(y > corData.yMax) corData.yMax = y;
+				if(y < corData.yMin) corData.yMin = y;
+				sumX += x;
+				sumY += y;
+				sumXY += x * y;
+			}
+			var meanX = sumX / nrReps, meanY = sumY / nrReps;
+			var rNumeratorSum = 0, rDenominatorSumX = 0, rDenominatorSumY = 0;
+			for(var j = 0; j < nrReps; j++) {
+				var diffX = focus.data[i][j] - meanX;
+				var diffY = correlateTo.data[i][j] - meanY;
+				rNumeratorSum += diffX * diffY;
+				rDenominatorSumX += diffX * diffX;
+				rDenominatorSumY += diffY * diffY;
+			}
+			temp.r = rNumeratorSum / (Math.sqrt(rDenominatorSumX) * Math.sqrt(rDenominatorSumY));
+			temp.slope = rNumeratorSum / rDenominatorSumX;
+			temp.yIntercept = meanY - temp.slope * meanX;
+
+			corData.scenarios.push(temp);
+		}
+		// give some margins to the range and domain
+		var marginX = (corData.xMax - corData.xMin) * 0.1;
+		if(marginX <= 0) marginX = 1;
+		corData.xMax += marginX;
+		if(corData.xMin > 0 && corData.xMin - marginX < 0)
+			corData.xMin = 0;
+		else corData.xMin -= marginX;
+
+		var marginY = (corData.yMax - corData.yMin) * 0.1;
+		if(marginY <= 0) marginY = 1;
+		corData.yMax += marginY;
+		if(corData.yMin > 0 && corData.yMin - marginY < 0)
+			corData.yMin = 0;
+		else corData.yMin -= marginY;
+
+		// now go through and find the intersections of the correlation line with the
+		// box boundaries
+		for(var i = 0; i < nrScenarios; i++) {
+			var scenario = corData.scenarios[i];
+			scenario.linePoints = [];
+			// y = mx + b where m = scenario.slope and b = scenario.yIntercept
+			// solve for x = corData.xMin
+			var leftY = scenario.slope * corData.xMin + scenario.yIntercept;
+			if(leftY >= corData.yMin && leftY <= corData.yMax)
+				scenario.linePoints.push({x:corData.xMin, y:leftY});
+			// solve for x = corData.xMax
+			var rightY = scenario.slope * corData.xMax + scenario.yIntercept;
+			if(rightY >= corData.yMin && rightY <= corData.yMax)
+				scenario.linePoints.push({x:corData.xMax, y:rightY});
+
+			// solve for y = corData.yMin
+			var bottomX = (corData.yMin - scenario.yIntercept) / scenario.slope;
+			if(bottomX >= corData.xMin && bottomX <= corData.xMax)
+				scenario.linePoints.push({x:bottomX, y:corData.yMin});
+			// solve for y = corData.yMax
+			var topX = (corData.yMax - scenario.yIntercept) / scenario.slope;
+			if(topX >= corData.xMin && topX <= corData.xMax)
+				scenario.linePoints.push({x:topX, y:corData.yMax});
+		}
+	}
+
+	canvas.draw = function draw() {
+		var focus = pfmDiv.focus;
+
+		var pickedObj = null;
+
+		var rangeX = corData.xMax - corData.xMin;
+		var rangeY = corData.yMax - corData.yMin;
+		var marginTop = 20.5;
+		if(pfmDiv.getAttribute('data-title') != 'none') {
+			// draw the title
+			ctx.font = "bold 13pt Tahoma";
+			ctx.fillStyle = "#000000";
+			var title = pfmDiv.getAttribute('data-title') || (focus.name + ' (x) vs ' + pfmDiv.correlateTo.name + ' (y)' );
+			ctx.textAlign = "center";
+			ctx.fillText(title, canvas.width / 2, 18);
+			ctx.textAlign = "left";
+			marginTop += 20;
+		}
+		var marginLeft = 5.5, marginRight = 10.5, marginBottom = 28.5;
+		if(focus.valueName && focus.valueName != 'Value')
+			marginBottom += 15;
+		var graphBottom = this.height - marginBottom;
+
+		ctx.font = "10pt Tahoma";
+		var graphSy = this.height - (marginTop + marginBottom);
+		if(graphSy < 5)
+			return;
+
+		if(correlateTo.valueName && correlateTo.valueName != 'Value') {
+			ctx.save();
+			ctx.translate(0, marginTop + 0.5*graphSy);
+			ctx.rotate(-Math.PI / 2);
+			ctx.textAlign = "center";
+			ctx.fillText(correlateTo.valueName, 0, 13);
+			ctx.restore();
+			marginLeft += 15;
+		}
+
+		ctx.strokeStyle = "#e0e0e0";
+		var yGrid = new YGrid(ctx, corData.yMin, corData.yMax, marginTop, graphSy, 18);
+		marginLeft += yGrid.width;
+		var graphSx = this.width - (marginLeft + marginRight);
+		if(graphSx < 5)
+			return;
+		yGrid.draw(marginLeft, graphSx);
+
+		var scenarioWidth = graphSx / nrScenarios;
+
+		var x = marginLeft;
+		ctx.lineWidth = 1;
+
+		var xGrid = new XGrid(ctx, corData.xMin, corData.xMax, marginLeft, scenarioWidth);
+		for(var i = 0; i < nrScenarios; i++) {
+			var scenarioX = x;
+
+			ctx.fillStyle = "black";
+			ctx.strokeStyle = "#e0e0e0";
+			xGrid.graphLeft = scenarioX;
+			xGrid.draw(graphBottom, -graphSy);
+
+			ctx.fillStyle = getIndexedColor(i+1, 50, 50);
+			var nrReps = Math.min(focus.data[i].length, correlateTo.data[i].length);
+			for(var j = 0; j < nrReps; j++) {
+				var valX = focus.data[i][j];
+				var valY = correlateTo.data[i][j];
+				var x = Math.floor(scenarioX + scenarioWidth * (valX - corData.xMin)/rangeX) + 0.5;
+				var y = Math.floor(graphBottom - graphSy * (valY - corData.yMin)/rangeY) + 0.5;
+				ctx.beginPath();
+				ctx.moveTo(x, y + 3);
+				ctx.lineTo(x - 3, y);
+				ctx.lineTo(x, y - 3);
+				ctx.lineTo(x + 3, y);
+				ctx.closePath();
+				ctx.fill();
+				if(canvas.pickMode == PICK_MODE_HOVER
+						&& canvas.pickCursorX < x + 3
+						&& canvas.pickCursorX > x - 3
+						&& canvas.pickCursorY > y - 3
+						&& canvas.pickCursorY < y + 3)
+					pickedObj = {top:y - 3,left:x,right:x,text:'Replication: ' + (j + 1)
+							+ '<br/>' + focus.name + ' (x): ' + focus.data[i][j].toFixed(2)
+							+ '<br/>' + correlateTo.name + ' (y): ' + correlateTo.data[i][j].toFixed(2)};
+			}
+
+			var scenario = corData.scenarios[i];
+			if(scenario.linePoints.length > 1) {
+				ctx.strokeStyle = ctx.fillStyle;
+				ctx.beginPath();
+				var x = scenarioX + scenarioWidth * (scenario.linePoints[0].x - corData.xMin)/rangeX;
+				var y = graphBottom - graphSy * (scenario.linePoints[0].y  - corData.yMin)/rangeY;
+				ctx.moveTo(x, y);
+				x = scenarioX + scenarioWidth * (scenario.linePoints[1].x - corData.xMin)/rangeX;
+				y = graphBottom - graphSy * (scenario.linePoints[1].y  - corData.yMin)/rangeY;
+				ctx.lineTo(x, y);
+				ctx.stroke();
+			}
+			x = scenarioX + scenarioWidth;
+		}
+		ctx.fillStyle = "#000000";
+		ctx.strokeStyle = "#808080";
+		x = marginLeft;
+		for(var i = 0; i < nrScenarios; i++) {
+			var text = pfmScenarioNames[i] + ', r=' + corData.scenarios[i].r.toFixed(2);
+			var textWidth = ctx.measureText(text).width;
+			if(textWidth > scenarioWidth - 10) {
+				text = 'S' + (i + 1) + ', r=' + corData.scenarios[i].r.toFixed(2);
+				textWidth = ctx.measureText(text).width;
+			}
+			if(i > 0)
+				ctx.strokeRect(Math.floor(x) + 0.5, marginTop, 0, graphSy);
+			ctx.fillText(text, x + 0.5*(scenarioWidth - textWidth), marginTop - 3, scenarioWidth);
+			x += scenarioWidth;
+		}
+		
+		if(focus.valueName && focus.valueName != 'Value') {
+			ctx.textAlign = "center";
+			ctx.fillText(focus.valueName, marginLeft + 0.5*graphSx, graphBottom + 25)
+			ctx.textAlign = "left";
+		}
+
+		ctx.lineWidth = 1;
+		ctx.strokeRect(marginLeft, marginTop, graphSx, graphSy);
+
+		ctx.font = "8pt Tahoma";
+		ctx.fillStyle = "#a0a0a0";
+		ctx.fillText("Correlation Coefficient [-1 <= r <=  1] where 0 = none, -1=strong negative, 1=strong positive", 10, this.height - 5);
+
+		if(canvas.pickMode) {
+			if(popup!=null) {
+				if(pickedObj) {
+					popup.style.display = "block";
+					popup.innerHTML = pickedObj.text;
+					var pos = findDocumentPos(canvas);
+					var scrollPos = windowScrollPos();
+					popup.style.left = (pos[0] - scrollPos.left + (pickedObj.left + pickedObj.right-popup.offsetWidth)/2)+'px';
+					popup.style.top = (pos[1] - scrollPos.top - pfmDiv.scrollTop + pickedObj.top - popup.offsetHeight - 5)+'px';
+
+				}
+				else popup.style.display = "none";
+			}
+		}
+	}
+
+	pfmDiv.repaint = function repaint() {ctx.clearRect(0,0, canvas.width, canvas.height); canvas.draw();};
+
+	canvas.onMouseMove = function onMouseMove(e) {
+		canvas.pickMode = PICK_MODE_HOVER;
+		canvas.pickCursorX = e.offsetX;
+		canvas.pickCursorY = e.offsetY;
+		canvas.getContext('2d').clearRect(0,0,canvas.width, canvas.height);
+		canvas.draw();
+		canvas.pickMode = 0;
+	}
+
+	canvas.onWindowResize = function onWindowResize() {
+		if(pfmDiv.fullScreen) {
+			var vp = viewport();
+			canvas.width = vp.width - 3;
+			canvas.height = vp.height - 7;
+		}
+		canvas.draw();
+	}
+
+	canvas.addEventListener('mousemove', canvas.onMouseMove, false);
+	canvas.onWindowResize();
+	if(pfmDiv.fullScreen)
+		window.addEventListener("resize", canvas.onWindowResize, false);
+
+}
+
+function showOverlay(show) {
+	var overlayDiv = document.getElementById('dialogoverlay');
+	if(!overlayDiv) return;
+	overlayDiv.style.display = show ? 'block' : 'none';
+	var container = document.getElementById('dialogcontainer');
+	container.style.display = show ? 'block' : 'none';
+	if(show) {
+		document.getElementById('flexsimpopup').style.display = 'none';
+		container.style.marginLeft = (-container.offsetWidth / 2) + 'px';
+	}
+}
+
+/* 
+calculated for confidence 90, 95, and 99
+
+Please note that this table actually corresponds to the 95, 97.5, and 99.5 confidence
+entries for the t distribution. The t distribution entries use the values to find the
+probability that the actual mean is below a certain point. We want to calculate whether
+the actual mean is below AND above certain points. So a 95% confidence that the mean is
+below a certain value corresponds to a 90% confidence that the mean is below one value
+and above another (since it is a symmetric bell curve).
+*/
+var qTable = 
+[
+[1,		6.314,  12.706,  63.657],
+[2,		2.920,  4.303,  9.925],
+[3,		2.353,  3.182,  5.841],
+[4,		2.132,  2.776,  4.604],
+[5,		2.015,  2.571,  4.032],
+[6,		1.943,  2.447,  3.707],
+[7,		1.895,  2.365,  3.499],
+[8,		1.860,  2.306,  3.355],
+[9,		1.833,  2.262,  3.250],
+[10,	1.812,  2.228,  3.169],
+[11,	1.796,  2.201,  3.106],
+[12,	1.782,  2.179,  3.055],
+[13,	1.771,  2.160,  3.012],
+[14,	1.761,  2.145,  2.977],
+[15,	1.753,  2.131,  2.947],
+[16,	1.746,  2.120,  2.921],
+[17,	1.740,  2.110,  2.898],
+[18,	1.734,  2.101,  2.878],
+[19,	1.729,  2.093,  2.861],
+[20,	1.725,  2.086,  2.845],
+[21,	1.721,  2.080,  2.831],
+[22,	1.717,  2.074,  2.819],
+[23,	1.714,  2.069,  2.807],
+[24,	1.711,  2.064,  2.797],
+[25,	1.708,  2.060,  2.787],
+[26,	1.706,  2.056,  2.779],
+[27,	1.703,  2.052,  2.771],
+[28,	1.701,  2.048,  2.763],
+[29,	1.699,  2.045,  2.756],
+[30,	1.697,  2.042,  2.750],
+
+[40,	1.684,  2.021,  2.704],
+
+[50,	1.676,  2.009,  2.678],
+
+[75,	1.665,  1.992,  2.643],
+
+[100,	1.660,  1.984,  2.626],
+
+[1000,	1.646,  1.962,  2.581]
+
+];
+
+function qStudentT(quant, df) {
+	if(df <= 0) return 0;
+	var index = 0;
+
+	if(df <= 30)
+		index = df - 1;
+	else
+	{
+		for(var j = 34; j > 28; j--) {
+			if(df >= qTable[j][0] ) {
+				index = j;
+				break;
+			}
+		}
+	}
+
+	if(quant <= .90001) return qTable[index][1];
+	else if(quant <= .95001) return qTable[index][2];
+	else return qTable[index][3];
+	return 0;
+}
+
+
+function calculateConfidence(stdDev, nrPoints, confidence) {
+	confidence *= 0.01;
+	var quant = qStudentT(confidence, nrPoints - 1);
+	return  stdDev*quant/Math.sqrt(nrPoints);
+}
+
+//javascript functions for exported experiment reports
+//class functions from http://snippets.dzone.com/posts/show/2630
+
+// ----------------------------------------------------------------------------
+// HasClassName
+//
+// Description : returns boolean indicating whether the object has the class name
+//    built with the understanding that there may be multiple classes
+//
+// Arguments:
+//    objElement              - element to manipulate
+//    strClass                - class name to add
+//
+function HasClassName(objElement, strClass)
+   {
+
+   // if there is a class
+   if ( objElement.className )
+      {
+
+      // the classes are just a space separated list, so first get the list
+      var arrList = objElement.className.split(' ');
+
+      // get uppercase class for comparison purposes
+      var strClassUpper = strClass.toUpperCase();
+
+      // find all instances and remove them
+      for ( var i = 0; i < arrList.length; i++ )
+         {
+
+         // if class found
+         if ( arrList[i].toUpperCase() == strClassUpper )
+            {
+
+            // we found it
+            return true;
+
+            }
+
+         }
+
+      }
+
+   // if we got here then the class name is not there
+   return false;
+
+   }
+//
+// HasClassName
+// ----------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------
+// AddClassName
+//
+// Description : adds a class to the class attribute of a DOM element
+//    built with the understanding that there may be multiple classes
+//
+// Arguments:
+//    objElement              - element to manipulate
+//    strClass                - class name to add
+//
+function AddClassName(objElement, strClass, blnMayAlreadyExist)
+   {
+
+   // if there is a class
+   if ( objElement.className )
+      {
+
+      // the classes are just a space separated list, so first get the list
+      var arrList = objElement.className.split(' ');
+
+      // if the new class name may already exist in list
+      if ( blnMayAlreadyExist )
+         {
+
+         // get uppercase class for comparison purposes
+         var strClassUpper = strClass.toUpperCase();
+
+         // find all instances and remove them
+         for ( var i = 0; i < arrList.length; i++ )
+            {
+
+            // if class found
+            if ( arrList[i].toUpperCase() == strClassUpper )
+               {
+
+               // remove array item
+               arrList.splice(i, 1);
+
+               // decrement loop counter as we have adjusted the array's contents
+               i--;
+
+               }
+
+            }
+
+         }
+
+      // add the new class to end of list
+      arrList[arrList.length] = strClass;
+
+      // add the new class to beginning of list
+      //arrList.splice(0, 0, strClass);
+
+      // assign modified class name attribute
+      objElement.className = arrList.join(' ');
+
+      }
+   // if there was no class
+   else
+      {
+      // assign modified class name attribute
+      objElement.className = strClass;
+      }
+   }
+//
+// AddClassName
+// ----------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------
+// RemoveClassName
+//
+// Description : removes a class from the class attribute of a DOM element
+//    built with the understanding that there may be multiple classes
+//
+// Arguments:
+//    objElement              - element to manipulate
+//    strClass                - class name to remove
+//
+function RemoveClassName(objElement, strClass)
+   {
+   // if there is a class
+   if ( objElement.className )
+      {
+      // the classes are just a space separated list, so first get the list
+      var arrList = objElement.className.split(' ');
+      // get uppercase class for comparison purposes
+      var strClassUpper = strClass.toUpperCase();
+      // find all instances and remove them
+      for ( var i = 0; i < arrList.length; i++ )
+         {
+         // if class found
+         if ( arrList[i].toUpperCase() == strClassUpper )
+            {
+            // remove array item
+            arrList.splice(i, 1);
+            // decrement loop counter as we have adjusted the array's contents
+            i--;
+            }
+         }
+      // assign modified class name attribute
+      objElement.className = arrList.join(' ');
+      }
+   // if there was no class
+   // there is nothing to remove
+   }
+//
+// RemoveClassName
+// ----------------------------------------------------------------------------
+
+
+function toggleElementView(elmid){
+	elm = document.getElementById(elmid+"_raw");
+	if(elm!=null){
+		if(HasClassName(elm, "show")){
+			RemoveClassName(elm, "show");
+			AddClassName(elm, "noshow");
+
+			obj = document.getElementById(elmid+"_toggle");
+			if(obj!=null){
+				obj.className = "expand";
+				obj.innerHTML = "<span>+</span>";
+			}
+		}
+		else{
+			RemoveClassName(elm, "noshow");
+			AddClassName(elm, "show");
+
+			obj = document.getElementById(elmid+"_toggle");
+			if(obj!=null){
+				obj.className = "collapse";
+				obj.innerHTML = "<span>-</span>";
+			}
+		}
+	}
+}
+
+
+document.addEventListener('DOMContentLoaded', pfmOnDocLoaded, false);
+
+
+</script>
+<script type="text/javascript" data-script-file="flexsimweb/dragresize/dragresize.js">
+/*
+
+DragResize v1.0
+(c) 2005-2006 Angus Turnbull, TwinHelix Designs http://www.twinhelix.com
+
+Licensed under the CC-GNU LGPL, version 2.1 or later:
+http://creativecommons.org/licenses/LGPL/2.1/
+This is distributed WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+*/
+
+
+// Common API code.
+
+if (typeof addEvent != 'function')
+{
+ var addEvent = function(o, t, f, l)
+ {
+  var d = 'addEventListener', n = 'on' + t, rO = o, rT = t, rF = f, rL = l;
+  if (o[d] && !l) return o[d](t, f, false);
+  if (!o._evts) o._evts = {};
+  if (!o._evts[t])
+  {
+   o._evts[t] = o[n] ? { b: o[n] } : {};
+   o[n] = new Function('e',
+    'var r = true, o = this, a = o._evts["' + t + '"], i; for (i in a) {' +
+     'o._f = a[i]; r = o._f(e||window.event) != false && r; o._f = null;' +
+     '} return r');
+   if (t != 'unload') addEvent(window, 'unload', function() {
+    removeEvent(rO, rT, rF, rL);
+   });
+  }
+  if (!f._i) f._i = addEvent._i++;
+  o._evts[t][f._i] = f;
+ };
+ addEvent._i = 1;
+ var removeEvent = function(o, t, f, l)
+ {
+  var d = 'removeEventListener';
+  if (o[d] && !l) return o[d](t, f, false);
+  if (o._evts && o._evts[t] && f._i) delete o._evts[t][f._i];
+ };
+}
+
+
+function cancelEvent(e, c)
+{
+ e.returnValue = false;
+ if (e.preventDefault) e.preventDefault();
+ if (c)
+ {
+  e.cancelBubble = true;
+  if (e.stopPropagation) e.stopPropagation();
+ }
+};
+
+
+
+
+
+
+
+// *** DRAG/RESIZE CODE ***
+
+function DragResize(myName, config)
+{
+ var props = {
+  myName: myName,                  // Name of the object.
+  enabled: true,                   // Global toggle of drag/resize.
+  handles: ['tl', 'tm', 'tr',
+   'ml', 'mr', 'bl', 'bm', 'br'], // Array of drag handles: top/mid/bot/right.
+  isElement: null,                 // Function ref to test for an element.
+  isHandle: null,                  // Function ref to test for move handle.
+  element: null,                   // The currently selected element.
+  chartDiv: null,
+  handle: null,                  // Active handle reference of the element.
+  minWidth: 10, minHeight: 10,     // Minimum pixel size of elements.
+  minLeft: 0, maxLeft: 9999,       // Bounding box area, in pixels.
+  minTop: 0, maxTop: 9999,
+  zIndex: 1,                       // The highest Z-Index yet allocated.
+  mouseX: 0, mouseY: 0,            // Current mouse position, recorded live.
+  lastMouseX: 0, lastMouseY: 0,    // Last processed mouse positions.
+  mOffX: 0, mOffY: 0,              // A known offset between position & mouse.
+  elmX: 0, elmY: 0,                // Element position.
+  elmW: 0, elmH: 0,                // Element size.
+  allowBlur: true,                 // Whether to allow automatic blur onclick.
+  ondragfocus: null,               // Event handler functions.
+  ondragstart: null,
+  ondragmove: null,
+  ondragend: null,
+  ondragblur: null,
+ };
+
+ for (var p in props)
+  this[p] = (typeof config[p] == 'undefined') ? props[p] : config[p];
+};
+
+
+DragResize.prototype.apply = function(node)
+{
+ // Adds object event handlers to the specified DOM node.
+
+ var obj = this;
+ addEvent(node, 'mousedown', function(e) { obj.mouseDown(e) } );
+ addEvent(node, 'mousemove', function(e) { obj.mouseMove(e) } );
+ addEvent(node, 'mouseup', function(e) { obj.mouseUp(e) } );
+};
+
+
+DragResize.prototype.select = function(newElement) { with (this)
+{
+ // Selects an element for dragging.
+
+ if (!document.getElementById || !enabled) return;
+
+ // Activate and record our new dragging element.
+ if (newElement && (newElement != element) && enabled)
+ {
+  element = newElement;
+  chartDiv = element.children[0];
+  // Elevate it and give it resize handles.
+  element.style.zIndex = ++zIndex;
+  var popup = document.getElementById('flexsimpopup');
+  if (popup)
+	popup.style.zIndex = zIndex +1;
+  if (this.resizeHandleSet) this.resizeHandleSet(element, true);
+  // Record element attributes for mouseMove().
+  elmX = parseInt(element.style.left);
+  elmY = parseInt(element.style.top);
+  elmW = element.offsetWidth-2;
+  elmH = element.offsetHeight-2;
+  if (ondragfocus) this.ondragfocus();
+ }
+}};
+
+
+DragResize.prototype.deselect = function(delHandles) { with (this)
+{
+ // Immediately stops dragging an element. If 'delHandles' is true, this
+ // remove the handles from the element and clears the element flag,
+ // completely resetting the .
+
+ if (!document.getElementById || !enabled) return;
+
+ if (delHandles)
+ {
+  if (ondragblur) this.ondragblur();
+  if (this.resizeHandleSet) this.resizeHandleSet(element, false);
+  element = null;
+ }
+
+ handle = null;
+ mOffX = 0;
+ mOffY = 0;
+}};
+
+
+DragResize.prototype.mouseDown = function(e) { with (this)
+{
+ // Suitable elements are selected for drag/resize on mousedown.
+ // We also initialise the resize boxes, and drag parameters like mouse position etc.
+ if (!document.getElementById || !enabled) return true;
+
+ var elm = e.target || e.srcElement,
+  newElement = null,
+  newHandle = null,
+  hRE = new RegExp(myName + '-([trmbl]{2})', '');
+
+ while (elm)
+ {
+  // Loop up the DOM looking for matching elements. Remember one if found.
+  if (elm.className)
+  {
+   if (!newHandle && (hRE.test(elm.className) || isHandle(elm))) newHandle = elm;
+   if (isElement(elm)) { newElement = elm; break }
+  }
+  elm = elm.parentNode;
+ }
+
+ // If this isn't on the last dragged element, call deselect(),
+ // which will hide its handles and clear element.
+ if (element && (element != newElement) && allowBlur) deselect(true);
+
+ // If we have a new matching element, call select().
+ if (newElement && (!element || (newElement == element)))
+ {
+  // Stop mouse selections if we're dragging a handle.
+  if (newHandle) cancelEvent(e);
+  select(newElement, newHandle);
+  handle = newHandle;
+  if (handle && ondragstart) this.ondragstart(hRE.test(handle.className));
+ }
+}};
+
+
+DragResize.prototype.mouseMove = function(e) { with (this)
+{
+ // This continually offsets the dragged element by the difference between the
+ // last recorded mouse position (mouseX/Y) and the current mouse position.
+ if (!document.getElementById || !enabled) return true;
+ if (document.ignoreMouse)
+     return false;
+ // We always record the current mouse position.
+ mouseX = e.pageX || e.clientX + document.documentElement.scrollLeft;
+ mouseY = e.pageY || e.clientY + document.documentElement.scrollTop;
+ // Record the relative mouse movement, in case we're dragging.
+ // Add any previously stored & ignored offset to the calculations.
+ var diffX = mouseX - lastMouseX + mOffX;
+ var diffY = mouseY - lastMouseY + mOffY;
+ mOffX = mOffY = 0;
+ // Update last processed mouse positions.
+ lastMouseX = mouseX;
+ lastMouseY = mouseY;
+
+ // That's all we do if we're not dragging anything.
+ if (!handle) return true;
+
+ // If included in the script, run the resize handle drag routine.
+ // Let it create an object representing the drag offsets.
+ var isResize = false;
+ if (this.resizeHandleDrag && this.resizeHandleDrag(diffX, diffY))
+ {
+  isResize = true;
+ }
+ else
+ {
+  // If the resize drag handler isn't set or returns false (to indicate the drag was
+  // not on a resize handle), we must be dragging the whole element, so move that.
+  // Bounds check left-right...
+  var dX = diffX, dY = diffY;
+  if (elmX + dX < minLeft) mOffX = (dX - (diffX = minLeft - elmX));
+  else if (elmX + elmW + dX > maxLeft) mOffX = (dX - (diffX = maxLeft - elmX - elmW));
+  // ...and up-down.
+  if (elmY + dY < minTop) mOffY = (dY - (diffY = minTop - elmY));
+  else if (elmY + elmH + dY > maxTop) mOffY = (dY - (diffY = maxTop - elmY - elmH));
+  elmX += diffX;
+  elmY += diffY;
+ }
+
+ // Assign new info back to the element, with minimum dimensions.
+ with (element.style)
+ {
+  left =   elmX + 'px';
+  width =  elmW + 'px';
+  top =    elmY + 'px';
+  height = elmH + 'px';
+ }
+
+ with (chartDiv.style)
+ {
+  width =  elmW + 'px';
+  height = elmH + 'px';
+ }
+ chartDiv.onResize();
+ 
+ // Evil, dirty, hackish Opera select-as-you-drag fix.
+ if (window.opera && document.documentElement)
+ {
+  var oDF = document.getElementById('op-drag-fix');
+  if (!oDF)
+  {
+   var oDF = document.createElement('input');
+   oDF.id = 'op-drag-fix';
+   oDF.style.display = 'none';
+   document.body.appendChild(oDF);
+  }
+  oDF.focus();
+ }
+
+ if (ondragmove) this.ondragmove(isResize);
+
+ // Stop a normal drag event.
+ cancelEvent(e);
+}};
+
+
+DragResize.prototype.mouseUp = function(e) { with (this)
+{
+ // On mouseup, stop dragging, but don't reset handler visibility.
+ if (!document.getElementById || !enabled) return;
+
+ var hRE = new RegExp(myName + '-([trmbl]{2})', '');
+ if (handle && ondragend) this.ondragend(hRE.test(handle.className));
+ deselect(false);
+}};
+
+
+
+/* Resize Code -- can be deleted if you're not using it. */
+
+DragResize.prototype.resizeHandleSet = function(elm, show) { with (this)
+{
+ // Either creates, shows or hides the resize handles within an element.
+
+ // If we're showing them, and no handles have been created, create 4 new ones.
+ if (!elm._handle_tr)
+ {
+  for (var h = 0; h < handles.length; h++)
+  {
+   // Create 4 news divs, assign each a generic + specific class.
+   var hDiv = document.createElement('div');
+   hDiv.className = myName + ' ' +  myName + '-' + handles[h];
+   elm['_handle_' + handles[h]] = elm.appendChild(hDiv);
+  }
+ }
+
+ // We now have handles. Find them all and show/hide.
+ for (var h = 0; h < handles.length; h++)
+ {
+  elm['_handle_' + handles[h]].style.visibility = show ? 'inherit' : 'hidden';
+ }
+}};
+
+
+DragResize.prototype.resizeHandleDrag = function(diffX, diffY) { with (this)
+{
+ // Passed the mouse movement amounts. This function checks to see whether the
+ // drag is from a resize handle created above; if so, it changes the stored
+ // elm* dimensions and mOffX/Y.
+
+ var hClass = handle && handle.className &&
+  handle.className.match(new RegExp(myName + '-([tmblr]{2})')) ? RegExp.$1 : '';
+
+ // If the hClass is one of the resize handles, resize one or two dimensions.
+ // Bounds checking is the hard bit -- basically for each edge, check that the
+ // element doesn't go under minimum size, and doesn't go beyond its boundary.
+ var dY = diffY, dX = diffX, processed = false;
+ if (hClass.indexOf('t') >= 0)
+ {
+  rs = 1;
+  if (elmH - dY < minHeight) mOffY = (dY - (diffY = elmH - minHeight));
+  else if (elmY + dY < minTop) mOffY = (dY - (diffY = minTop - elmY));
+  elmY += diffY;
+  elmH -= diffY;
+  processed = true;
+ }
+ if (hClass.indexOf('b') >= 0)
+ {
+  rs = 1;
+  if (elmH + dY < minHeight) mOffY = (dY - (diffY = minHeight - elmH));
+  else if (elmY + elmH + dY > maxTop) mOffY = (dY - (diffY = maxTop - elmY - elmH));
+  elmH += diffY;
+  processed = true;
+ }
+ if (hClass.indexOf('l') >= 0)
+ {
+  rs = 1;
+  if (elmW - dX < minWidth) mOffX = (dX - (diffX = elmW - minWidth));
+  else if (elmX + dX < minLeft) mOffX = (dX - (diffX = minLeft - elmX));
+  elmX += diffX;
+  elmW -= diffX;
+  processed = true;
+ }
+ if (hClass.indexOf('r') >= 0)
+ {
+  rs = 1;
+  if (elmW + dX < minWidth) mOffX = (dX - (diffX = minWidth - elmW));
+  else if (elmX + elmW + dX > maxLeft) mOffX = (dX - (diffX = maxLeft - elmX - elmW));
+  elmW += diffX;
+  processed = true;
+ }
+
+ return processed;
+}};
+
+
+</script>
+<script type="text/javascript" data-script-file="flexsimweb/dragresize/dragresizepage.js">
+var dragresize = new DragResize('dragresize',
+ { minWidth: 50, minHeight: 50, minLeft: 0, minTop: 0, maxLeft: 10000, maxTop: 10000 });
+
+dragresize.isElement = function(elm)
+{
+ if (elm instanceof SVGElement) return false;
+ if (elm.className && elm.className.indexOf('drsElement') > -1) return true;
+};
+dragresize.isHandle = function(elm)
+{
+ if (elm instanceof SVGElement) return false;
+ if (elm.className && elm.className.indexOf('drsMoveHandle') > -1) return true;
+};
+
+dragresize.ondragfocus = function() { };
+dragresize.ondragstart = function(isResize) { };
+dragresize.ondragmove = function(isResize) { };
+dragresize.ondragend = function(isResize) { };
+dragresize.ondragblur = function() { };
+
+dragresize.apply(document);
+
+
+</script>
+</head>
+<body>
+<!--[if lt IE 9]><div style="color:#fff;background:#d00;padding:12px;text-align:center;position:fixed;top:0px;z-index:9999;margin:0px auto;left:0;right:0;"><a style="position:absolute;top:0px;right:0px;font-size:80%;padding:3px;background:#fff;color:red;" href="#" onclick="this.parentNode.style.display='none';">close</a>You are using an out of date browser. Some features of your report may not work. Please upgrade to the latest version of your favorite browser:<br /><a href="http://www.google.com/chrome/">Google Chrome</a>, <a href="http://www.getfirefox.com/">Mozilla Firefox</a>, <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">Microsoft Internet Explorer</a>, <a href="http://www.opera.com/">Opera</a></div><![endif]-->
+<script>
+var pfmData = [{name:"Wq - expected waiting time in queue waiting to buy tickets at a ticket kiosk", valueName:"", data: [[4.914375,4.297632,4.769948,5.492409,4.170934,5.711842,6.287548,4.898257,7.004267,5.226523,3.859596,4.567041,5.568681,4.112799,5.701094]
+]},
+{name:"Wq - expected waiting time in queue waiting to scan a ticket at a scanning station", valueName:"", data: [[8.613802,10.799706,9.071701,8.807851,9.736385,8.146167,8.025759,10.018793,8.267418,9.479958,10.073116,10.716575,9.010457,13.098168,8.346653]
+]},
+{name:"Wq - expected waiting time in queue waiting to buy items at a concession stand", valueName:"", data: [[0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]
+]},
+{name:"Lq - expected number of groups in queue waiting to buy tickets at a ticket kiosk", valueName:"", data: [[2.494476,1.983752,2.459571,2.765912,2.019435,2.859447,3.316422,2.423076,3.562396,2.679192,1.747149,2.189795,2.678865,1.932301,2.834077]
+]},
+{name:"Lq - expected number of groups in queue waiting to scan tickets at a scanning station", valueName:"", data: [[4.165399,5.615485,4.340052,4.319820,4.926397,3.971726,3.692098,4.891041,3.953268,4.469156,5.321655,5.465347,4.569923,6.750775,4.094739]
+]},
+{name:"Lq - expected number of groups in queue waiting to buy items at a concession stand", valueName:"", data: [[0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]
+]},
+{name:"Ls - expected number of groups in the whole system", valueName:"", data: [[4.165399,5.615485,4.340052,4.319820,4.926397,3.971726,3.692098,4.891041,3.953268,4.469156,5.321655,5.465347,4.569923,6.750775,4.094739]
+]},
+{name:"Ws - expected waiting time in the whole system", valueName:"", data: [[8.613802,10.799706,9.071701,8.807851,9.736385,8.146167,8.025759,10.018793,8.267418,9.479958,10.073116,10.716575,9.010457,13.098168,8.346653]
+]}
+];
+var pfmScenarioNames = ["Current Scenario"];
+var validStatData = [];
+</script>
+	<div id="content">
+		<h1>Experimentation Report</h1>
+		<table class="indent" id="exp_vars" cellpadding="0" cellspacing="0" border="0">
+			<tr><td class="right">Number of Scenarios:</td><td>1</td></tr>
+			<tr><td class="right">Number of Replications Per Scenario:</td><td>15</td></tr>
+			<tr><td class="right">Warmup Time:</td><td>0</td></tr>
+		</table>
+		<div class="perfmeasure" id="Wq_-_expected_waiting_time_in_queue_waiting_to_buy_tickets_at_a_ticket_kiosk">
+			<h2>Wq - expected waiting time in queue waiting to buy tickets at a ticket kiosk</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="0" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="0" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="0" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="0" data-title="Raw Data" ></div>
+		</div>
+		<div class="perfmeasure" id="Wq_-_expected_waiting_time_in_queue_waiting_to_scan_a_ticket_at_a_scanning_station">
+			<h2>Wq - expected waiting time in queue waiting to scan a ticket at a scanning station</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="1" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="1" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="1" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="1" data-title="Raw Data" ></div>
+		</div>
+		<div class="perfmeasure" id="Wq_-_expected_waiting_time_in_queue_waiting_to_buy_items_at_a_concession_stand">
+			<h2>Wq - expected waiting time in queue waiting to buy items at a concession stand</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="2" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="2" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="2" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="2" data-title="Raw Data" ></div>
+		</div>
+		<div class="perfmeasure" id="Lq_-_expected_number_of_groups_in_queue_waiting_to_buy_tickets_at_a_ticket_kiosk">
+			<h2>Lq - expected number of groups in queue waiting to buy tickets at a ticket kiosk</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="3" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="3" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="3" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="3" data-title="Raw Data" ></div>
+		</div>
+		<div class="perfmeasure" id="Lq_-_expected_number_of_groups_in_queue_waiting_to_scan_tickets_at_a_scanning_station">
+			<h2>Lq - expected number of groups in queue waiting to scan tickets at a scanning station</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="4" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="4" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="4" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="4" data-title="Raw Data" ></div>
+		</div>
+		<div class="perfmeasure" id="Lq_-_expected_number_of_groups_in_queue_waiting_to_buy_items_at_a_concession_stand">
+			<h2>Lq - expected number of groups in queue waiting to buy items at a concession stand</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="5" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="5" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="5" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="5" data-title="Raw Data" ></div>
+		</div>
+		<div class="perfmeasure" id="Ls_-_expected_number_of_groups_in_the_whole_system">
+			<h2>Ls - expected number of groups in the whole system</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="6" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="6" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="6" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="6" data-title="Raw Data" ></div>
+		</div>
+		<div class="perfmeasure" id="Ws_-_expected_waiting_time_in_the_whole_system">
+			<h2>Ws - expected waiting time in the whole system</h2>
+<div data-chart-type="pfmsummary" data-is-pfm-chart=true data-focus="7" data-confidence="90" data-title="Summary" style="margin-top:30px" ></div>
+<div data-chart-type="pfmchart" data-is-pfm-chart=true data-focus="7" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Replications Plot" ></div>
+<div data-chart-type="pfmhisto" data-is-pfm-chart=true data-focus="7" data-nr-histo-buckets="10" style="width:632px;height:302px;margin:auto;margin-top:30px" data-title="Frequency Histogram" ></div>
+<div data-chart-type="pfmdatatable" data-is-pfm-chart=true data-focus="7" data-title="Raw Data" ></div>
+		</div>
+	</div>
+	<div id="menu">
+		<div id="menu_title">Performance Measures</div>
+		<dl id="gallery">
+				<dd class="top"><a href="#Wq_-_expected_waiting_time_in_queue_waiting_to_buy_tickets_at_a_ticket_kiosk" title="Wq - expected waiting time in queue waiting to buy tickets at a ticket kiosk">Wq - expected waiting time in queue waiting to buy tickets at a ticket kiosk</a></dd>
+				<dd><a href="#Wq_-_expected_waiting_time_in_queue_waiting_to_scan_a_ticket_at_a_scanning_station" title="Wq - expected waiting time in queue waiting to scan a ticket at a scanning station">Wq - expected waiting time in queue waiting to scan a ticket at a scanning station</a></dd>
+				<dd><a href="#Wq_-_expected_waiting_time_in_queue_waiting_to_buy_items_at_a_concession_stand" title="Wq - expected waiting time in queue waiting to buy items at a concession stand">Wq - expected waiting time in queue waiting to buy items at a concession stand</a></dd>
+				<dd><a href="#Lq_-_expected_number_of_groups_in_queue_waiting_to_buy_tickets_at_a_ticket_kiosk" title="Lq - expected number of groups in queue waiting to buy tickets at a ticket kiosk">Lq - expected number of groups in queue waiting to buy tickets at a ticket kiosk</a></dd>
+				<dd><a href="#Lq_-_expected_number_of_groups_in_queue_waiting_to_scan_tickets_at_a_scanning_station" title="Lq - expected number of groups in queue waiting to scan tickets at a scanning station">Lq - expected number of groups in queue waiting to scan tickets at a scanning station</a></dd>
+				<dd><a href="#Lq_-_expected_number_of_groups_in_queue_waiting_to_buy_items_at_a_concession_stand" title="Lq - expected number of groups in queue waiting to buy items at a concession stand">Lq - expected number of groups in queue waiting to buy items at a concession stand</a></dd>
+				<dd><a href="#Ls_-_expected_number_of_groups_in_the_whole_system" title="Ls - expected number of groups in the whole system">Ls - expected number of groups in the whole system</a></dd>
+				<dd><a href="#Ws_-_expected_waiting_time_in_the_whole_system" title="Ws - expected waiting time in the whole system">Ws - expected waiting time in the whole system</a></dd>
+		</dl>
+		<div id="menu_foot"></div>
+	</div>
+	<div id="flexsimpopup"></div>
+</body>
+</html>
