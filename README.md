@@ -20,4 +20,12 @@ All the values calculated and utilized in this model are accurately approximated
 
 ## Flow Chart of Simulation Model
 
+<img width="936" alt="Screen Shot 2021-05-16 at 5 21 44 PM" src="https://user-images.githubusercontent.com/30897989/118402705-5fcda280-b66b-11eb-901a-52c8a738ac16.png">
 
+
+## Simulation Model Snapshot
+
+<img width="652" alt="Screen Shot 2018-12-09 at 1 59 38 AM" src="https://user-images.githubusercontent.com/30897989/118402767-aae7b580-b66b-11eb-9016-f34c4753b670.png">
+
+---
+Project done by Youssef Elmougy and Sari AlTawabini
