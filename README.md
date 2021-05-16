@@ -16,7 +16,7 @@ All the values calculated and utilized in this model are accurately approximated
     6. Analysis of Current System and Recommendation of Improvements
 2. WorkingFinalModifiedModel.fsm - a 3D Simulation FLEXSIM file of the model
 3. Modified System Statistics.html - a report of the statistics gathered for the model
-4. all times.xlsm - an excel sheet of interarrival times for the model
+4. all times.xlsx - an excel sheet of interarrival times for the model
 
 ## Flow Chart of Simulation Model
 
